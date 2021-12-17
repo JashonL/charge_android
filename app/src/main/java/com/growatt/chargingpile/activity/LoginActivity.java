@@ -2,12 +2,15 @@ package com.growatt.chargingpile.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.growatt.chargingpile.BaseActivity;
 import com.growatt.chargingpile.R;
@@ -46,13 +49,38 @@ public class LoginActivity extends BaseActivity {
     Button btLogin;
     @BindView(R.id.ll_demo)
     LinearLayout llDemo;
+    @BindView(R.id.tvRight)
+    TextView tvRight;
+    @BindView(R.id.et_dynamic)
+    EditText etDynamic;
+
     private Unbinder bind;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        bind=ButterKnife.bind(this);
+        bind = ButterKnife.bind(this);
+        tvRight.setVisibility(View.GONE);
+        etDynamic.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String s = editable.toString();
+                if (!TextUtils.isEmpty(s)) {
+                    SmartHomeUrlUtil.SMARTHOME_BASE_URL = s;
+                }
+            }
+        });
         JPushInterface.init(getApplicationContext());
         initUser();
         AutoLogin();
@@ -64,10 +92,10 @@ public class LoginActivity extends BaseActivity {
             String name = inquirylogin.get("name").toString();
             String pwd = inquirylogin.get("pwd").toString();
 //            if (!Cons.isflagId.equals(name)) {
-                etUsername.setText(name);
-                etPassword.setText(pwd);
-                etUsername.setSelection(name.length());
-                etPassword.setSelection(pwd.length());
+            etUsername.setText(name);
+            etPassword.setText(pwd);
+            etUsername.setSelection(name.length());
+            etPassword.setSelection(pwd.length());
 //            }
         }
     }
@@ -217,6 +245,6 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (bind!=null)bind.unbind();
+        if (bind != null) bind.unbind();
     }
 }

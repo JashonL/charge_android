@@ -183,4 +183,21 @@
     </LinearLayout>
 
 
+    <EditText
+        android:id="@+id/et_dynamic"
+        android:padding="@dimen/xa10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/xa50"
+        android:hint="@string/dynamic"
+        android:inputType="textPassword"
+        android:textColor="@color/title_2"
+        android:textSize="@dimen/xa24" />
+
+
+
+
+
 </LinearLayout>

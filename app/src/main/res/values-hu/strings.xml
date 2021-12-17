@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Project EV</string>
+    <string name="app_name">EV Ch</string>
 
     <string name="m1立即体验">Próbálja most</string>
     <string name="m2下一步">Következő</string>
@@ -487,4 +487,6 @@
     <string name="m验证成功">Sikeres hitelesítés</string>
     <string name="m315_turn_on_gps">Kérjük, kapcsolja be a GPS helymeghatározást a wifi-támogatás megszerzéséhez</string>
     <string name = "login_expired"> A bejelentkezési adatok lejártak, kérjük, jelentkezzen be újra </string>
+
+    <string name="dynamic">动态设置服务器</string>
 </resources>

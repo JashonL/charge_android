@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ATS Charge</string>
+    <string name="app_name">EV Ch</string>
     <string name="m1立即体验">Prova ora</string>
     <string name="m2下一步">Prossimo</string>
     <string name="m3完成">Fatto</string>
@@ -471,6 +471,8 @@
     <string name="m315_turn_on_gps">Attiva il posizionamento GPS per ottenere ssid wifi</string>
     <string name="login_expired"> Le informazioni di accesso sono scadute, per favore accedi di nuovo</string>
 
+
+    <string name="dynamic">动态设置服务器</string>
 </resources>
 
 

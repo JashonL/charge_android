@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ATS Charge</string>
+    <string name="app_name">EV Ch</string>
     <string name="m1立即体验">Try it now</string>
     <string name="m2下一步">Next</string>
     <string name="m3完成">Done</string>
@@ -472,6 +472,8 @@
     <string name="m验证成功">Verified successfully</string>
     <string name="m315_turn_on_gps">Please turn on GPS positioning to get wifi ssid</string>
     <string name="login_expired"> The login information has expired, please log in again</string>
+    <string name="dynamic">动态设置服务器</string>
+
 </resources>
 
 

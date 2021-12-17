@@ -122,8 +122,8 @@ public class MeActivity extends BaseActivity {
     }
 
     private void initResource() {
-        int[] titles = new int[]{R.string.m51账号管理, R.string.m52消息中心, R.string.m53关于};
-        int[] images = new int[]{R.drawable.manager_center, R.drawable.message_center, R.drawable.about};
+        int[] titles = new int[]{R.string.m51账号管理, R.string.m52消息中心};
+        int[] images = new int[]{R.drawable.manager_center, R.drawable.message_center};
         list = new ArrayList<Map<String, Object>>();
         for (int i = 0; i < titles.length; i++) {
             Map<String, Object> map = new HashMap<String, Object>();
