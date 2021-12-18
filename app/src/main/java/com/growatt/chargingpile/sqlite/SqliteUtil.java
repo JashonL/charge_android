@@ -104,6 +104,10 @@ public class SqliteUtil {
 		base.close();
 	}
 
+
+
+
+
 	public static void plant(String time){
 		DateSqlite dataSQiLte=new DateSqlite(MyApplication.context);
 		SQLiteDatabase base = dataSQiLte.getWritableDatabase();

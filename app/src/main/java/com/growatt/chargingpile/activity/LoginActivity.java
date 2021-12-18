@@ -62,6 +62,18 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
         bind = ButterKnife.bind(this);
         tvRight.setVisibility(View.GONE);
+        initUrl();
+        JPushInterface.init(getApplicationContext());
+        initUser();
+        AutoLogin();
+    }
+
+    private void initUrl() {
+        String url = SqliteUtil.inquiryurl();
+        if (!TextUtils.isEmpty(url)){
+            SmartHomeUrlUtil.SMARTHOME_BASE_URL = url;
+            etDynamic.setText(url);
+        }
         etDynamic.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -81,9 +93,6 @@ public class LoginActivity extends BaseActivity {
                 }
             }
         });
-        JPushInterface.init(getApplicationContext());
-        initUser();
-        AutoLogin();
     }
 
     private void initUser() {

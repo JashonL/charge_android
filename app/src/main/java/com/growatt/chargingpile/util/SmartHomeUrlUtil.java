@@ -19,7 +19,7 @@ public class SmartHomeUrlUtil {
 
 
     public static String getServer(){
-       return "charge.growatt.com";
+       return SMARTHOME_BASE_URL;
     }
 
     public static String postGetChargingList() {

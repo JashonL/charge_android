@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/headerView"
     android:gravity="center_horizontal"
     android:orientation="vertical">
@@ -24,40 +24,39 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:gravity="center"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
             android:text="@string/m24登陆"
             android:textColor="@color/title_1"
             android:textSize="@dimen/xa37"
-            android:textStyle="bold" />
-
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <com.growatt.chargingpile.view.AutofitTextView
             android:id="@+id/tvRight"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
             android:layout_centerVertical="true"
             android:background="@drawable/touch_bg_main"
             android:gravity="center"
             android:maxWidth="@dimen/xa300"
-            android:paddingBottom="@dimen/xa32"
-            android:paddingRight="@dimen/xa20"
             android:paddingLeft="@dimen/xa20"
             android:paddingTop="@dimen/xa32"
+            android:paddingRight="@dimen/xa20"
+            android:paddingBottom="@dimen/xa32"
             android:text="@string/m23注册"
             android:textColor="@color/forget_password_color"
-            android:textSize="@dimen/xa35" />
+            android:textSize="@dimen/xa35"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
-        android:layout_width="@dimen/xa427"
-        android:layout_height="@dimen/xa172"
+        android:layout_width="@dimen/xa300"
+        android:layout_height="@dimen/xa300"
         android:layout_marginTop="@dimen/xa31"
         android:src="@drawable/login_logo" />
 
@@ -65,8 +64,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/xa90"
         android:layout_marginLeft="@dimen/xa30"
+        android:layout_marginTop="@dimen/xa30"
         android:layout_marginRight="@dimen/xa30"
-        android:layout_marginTop="@dimen/xa120"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/xa24"
@@ -104,8 +103,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/xa90"
         android:layout_marginLeft="@dimen/xa30"
-        android:layout_marginRight="@dimen/xa30"
         android:layout_marginTop="@dimen/xa30"
+        android:layout_marginRight="@dimen/xa30"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/xa24"
@@ -146,8 +145,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/xa88"
         android:layout_marginLeft="@dimen/xa75"
-        android:layout_marginRight="@dimen/xa75"
         android:layout_marginTop="@dimen/xa49"
+        android:layout_marginRight="@dimen/xa75"
         android:background="@drawable/selector_circle_btn_green_gradient"
         android:stateListAnimator="@null"
         android:text="@string/m24登陆"
@@ -183,21 +182,36 @@
     </LinearLayout>
 
 
-    <EditText
-        android:id="@+id/et_dynamic"
-        android:padding="@dimen/xa10"
+    <LinearLayout
+        android:id="@+id/ll_set_url"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@null"
-        android:gravity="center"
-        android:layout_marginTop="@dimen/xa50"
-        android:hint="@string/dynamic"
-        android:inputType="textPassword"
-        android:textColor="@color/title_2"
-        android:textSize="@dimen/xa24" />
+        android:padding="@dimen/xa30"
+        android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/tv_set"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/xa10"
+            android:textSize="@dimen/size_content_sp_14"
+            android:textColor="@color/title_bg_white"
+            android:text="@string/dynamic" />
 
+        <EditText
+            android:id="@+id/et_dynamic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/xa5"
+            android:background="@drawable/shape_solid_stroke_rect"
+            android:gravity="center_vertical"
+            android:padding="@dimen/xa20"
+            android:hint="http://..."
+            android:textColor="@color/title_2"
+            android:textSize="@dimen/xa24" />
 
+    </LinearLayout>
 
 
 </LinearLayout>
