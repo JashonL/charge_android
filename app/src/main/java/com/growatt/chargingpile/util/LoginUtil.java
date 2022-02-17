@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.growatt.chargingpile.R;
 import com.growatt.chargingpile.activity.ChargingPileActivity;
 import com.growatt.chargingpile.activity.LoginActivity;
+import com.growatt.chargingpile.activity.YingliLoginActivity;
 import com.growatt.chargingpile.application.MyApplication;
 import com.growatt.chargingpile.bean.UserBean;
 import com.growatt.chargingpile.connutil.GetUtil;
@@ -52,7 +53,7 @@ public class LoginUtil {
         T.make(R.string.login_expired,MyApplication.context);
         SharedPreferencesUnit.getInstance(context).putInt(Constant.AUTO_LOGIN, 0);
         SharedPreferencesUnit.getInstance(context).putInt(Constant.AUTO_LOGIN_TYPE, 0);
-        jumpActivity(context, LoginActivity.class);
+        jumpActivity(context, YingliLoginActivity.class);
     /*
         Map<String, Object> map = SqliteUtil.inquirylogin();
         String url = SqliteUtil.inquiryurl();
@@ -313,7 +314,7 @@ public class LoginUtil {
             }
         }
         activityStack.clear();
-        act.startActivity(new Intent(act,LoginActivity.class));
+        act.startActivity(new Intent(act, YingliLoginActivity.class));
         act.finish();
     }
 

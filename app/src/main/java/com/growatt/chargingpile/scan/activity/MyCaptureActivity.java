@@ -90,7 +90,7 @@ public class MyCaptureActivity extends BaseActivity implements SurfaceHolder.Cal
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(Color.TRANSPARENT);
+            window.setStatusBarColor(Color.WHITE);
         }
 
         /*先获取配置信息*/

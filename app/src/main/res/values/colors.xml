@@ -6,6 +6,12 @@
     <!--<color name="headerView_r50">#8011a7f3</color> &lt;!&ndash;头部颜色&ndash;&gt;-->
     <!--<color name="blue_background">#2ec2f0</color>&lt;!&ndash;主体背景颜色1：蓝色&ndash;&gt;-->
     <!--新版-->
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+
+
     <color name="headerView">#ffffff</color> <!--头部颜色-->
     <color name="headerView_r50">#80ffffff</color> <!--头部颜色加透明度50%-->
     <color name="blue_background">#1da7ff</color><!--主体背景颜色1：蓝色-->
@@ -90,6 +96,11 @@
 
     <!--充电桩不可用-->
     <color name="charging_fault">#ff6c00</color>
+
+
+    <color name="login_bg_start">#8850FF</color>
+    <color name="login_bg_end">#7C97FE</color>
+
 
 
 </resources>

@@ -23,6 +23,7 @@ import com.growatt.chargingpile.util.Constant;
 import com.growatt.chargingpile.util.LoginUtil;
 import com.growatt.chargingpile.util.SharedPreferencesUnit;
 import com.growatt.chargingpile.util.SmartHomeUrlUtil;
+import com.gyf.immersionbar.ImmersionBar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -67,6 +68,18 @@ public class LoginActivity extends BaseActivity {
         initUser();
         AutoLogin();
     }
+
+
+
+
+    @Override
+    public void initStatusBar() {
+        //设置共同沉浸式样式
+        ImmersionBar.with(this).navigationBarColor(R.color.colorPrimary).init();
+    }
+
+
+
 
     private void initUrl() {
         String url = SqliteUtil.inquiryurl();

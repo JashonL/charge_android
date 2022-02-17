@@ -49,7 +49,7 @@ public class GuiActivity extends BaseActivity {
                 intent.putExtra("chargeId",chargeId);
                 jumpTo(intent,true);
             }else {
-                jumpTo(LoginActivity.class,true);
+                jumpTo(YingliLoginActivity.class,true);
 
             }
         }
@@ -82,7 +82,7 @@ public class GuiActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 GuiActivity.this.startActivity(new Intent(GuiActivity.this,
-                        LoginActivity.class));
+                        YingliLoginActivity.class));
                 finish();
             }
         });

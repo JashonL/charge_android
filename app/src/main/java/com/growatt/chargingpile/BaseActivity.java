@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.growatt.chargingpile.EventBusMsg.EmptyMsg;
 import com.growatt.chargingpile.activity.LoginActivity;
+import com.growatt.chargingpile.activity.YingliLoginActivity;
 import com.growatt.chargingpile.application.MyApplication;
 import com.growatt.chargingpile.util.BarTextColorUtils;
 import com.growatt.chargingpile.util.Constant;
@@ -30,6 +31,7 @@ import com.growatt.chargingpile.util.Mydialog;
 import com.growatt.chargingpile.util.PermissionCodeUtil;
 import com.growatt.chargingpile.util.SharedPreferencesUnit;
 import com.growatt.chargingpile.util.T;
+import com.gyf.immersionbar.ImmersionBar;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -55,6 +57,9 @@ public abstract class BaseActivity extends AppCompatActivity implements EasyPerm
      * 是否继续询问权限
      */
     protected boolean isContinue = true;
+
+    protected ImmersionBar mImmersionBar;
+
 
     public enum Position {
         LEFT, CENTER, RIGHT
@@ -93,29 +98,40 @@ public abstract class BaseActivity extends AppCompatActivity implements EasyPerm
     /**
      * 沉浸式状态栏处理
      */
-    private void initStatusBar() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
-            localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {//5.0 全透明实现
-            Window window = getWindow();
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-         /*   if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-            }*/
-            window.setStatusBarColor(Color.TRANSPARENT);//calculateStatusColor(Color.WHITE, (int) alphaValue)
-        }
+    public void initStatusBar() {
+        //设置共同沉浸式样式
+        mImmersionBar=  ImmersionBar.with(this);
+        mImmersionBar.statusBarDarkFont(true, 0.2f)//设置状态栏图片为深色，(如果android 6.0以下就是半透明)
+                .fitsSystemWindows(true)
+                .statusBarColor(R.color.white_background)//这里的颜色，你可以自定义。
+                .init();
+
+
+     /*   // 经测试在代码里直接声明透明状态栏更有效
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
+                localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {//5.0 全透明实现
+                Window window = getWindow();
+                window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+                }
+                window.setStatusBarColor(Color.TRANSPARENT);//calculateStatusColor(Color.WHITE, (int) alphaValue)
+            }
+            //状态栏字体颜色设置
+            BarTextColorUtils.StatusBarLightMode(this);*/
     }
 
     public void savedInstanceState(Bundle b) {
         //设置不自动登录
         SharedPreferencesUnit.getInstance(MyApplication.context).putInt(Constant.AUTO_LOGIN, 0);
         SharedPreferencesUnit.getInstance(MyApplication.context).putInt(Constant.AUTO_LOGIN_TYPE, 0);
-        Intent intent = new Intent(MyApplication.context, LoginActivity.class);
+        Intent intent = new Intent(MyApplication.context, YingliLoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         MyApplication.context.startActivity(intent);
     }
