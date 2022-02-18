@@ -285,6 +285,17 @@
 
         </activity>
 
+        <activity
+            android:name=".activity.UserRegisterActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.UserCenterActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+
 
     </application>
 

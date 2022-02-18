@@ -11,8 +11,10 @@
         android:layout_height="@dimen/ya40"
         android:gravity="center"
         android:textSize="@dimen/ya30"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         android:textColor="@color/white_background"
-        android:background="@drawable/shape_circle_orange" />
+        android:background="@drawable/shape_circle_main" />
 
     <TextView
         android:id="@+id/tv_des"

@@ -216,7 +216,7 @@ public class AmendsActivity extends BaseActivity {
         Mydialog.Show(this);
         JSONObject object = new JSONObject();
         try {
-            object.put("cmd", "updateUser");//cmd  注册
+            object.put("command", "updateUser");//cmd  注册
             object.put("userId", SmartHomeUtil.getUserName());//用户名
             object.put("password", password);//密码
             if ("1".equals(type)) {

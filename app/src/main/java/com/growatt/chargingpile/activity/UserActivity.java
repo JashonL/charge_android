@@ -163,7 +163,7 @@ public class UserActivity extends BaseActivity {
     private void deleteUser() {
         JSONObject object = new JSONObject();
         try {
-            object.put("cmd", "deleteUser");
+            object.put("command", "deleteUser");
             object.put("userId", SmartHomeUtil.getUserName());
             object.put("lan", getLanguage());
         } catch (Exception e) {

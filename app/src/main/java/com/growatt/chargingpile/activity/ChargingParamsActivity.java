@@ -1114,7 +1114,7 @@ public class ChargingParamsActivity extends BaseActivity {
     private void getMoneyUnit() {
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("cmd", "selectMoneyUnit");
+            jsonObject.put("command", "selectMoneyUnit");
             jsonObject.put("lan", getLanguage());
             jsonObject.put("userId", SmartHomeUtil.getUserName());
         } catch (JSONException e) {
@@ -1255,7 +1255,7 @@ public class ChargingParamsActivity extends BaseActivity {
     private void getCountry() {
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("cmd", "countryList");
+            jsonObject.put("command", "countryList");
             jsonObject.put("lan", getLanguage());
             jsonObject.put("userId", SmartHomeUtil.getUserName());
         } catch (JSONException e) {

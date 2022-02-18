@@ -22,7 +22,7 @@
             android:layout_toRightOf="@+id/ivLeft"
             android:gravity="center"
             android:text="Title"
-            android:textColor="#ffffff"
+            android:textColor="@color/title_1"
             android:textSize="@dimen/xa30"
             android:layout_toStartOf="@+id/tvRight"
             android:layout_toEndOf="@+id/ivLeft" />

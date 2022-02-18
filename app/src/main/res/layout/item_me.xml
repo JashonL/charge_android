@@ -26,7 +26,7 @@
             android:layout_marginLeft="@dimen/xa14"
             android:layout_toRightOf="@+id/imageView1"
             android:text="TextView"
-            android:textColor="#333333"
+            android:textColor="@color/main_theme_text_color"
             android:textSize="@dimen/xa30" />
 
         <ImageView

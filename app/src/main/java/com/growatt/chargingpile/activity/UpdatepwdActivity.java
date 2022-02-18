@@ -94,7 +94,7 @@ public class UpdatepwdActivity extends BaseActivity {
         Mydialog.Show(this);
         JSONObject object = new JSONObject();
         try {
-            object.put("cmd", "updateUser");//cmd  注册
+            object.put("command", "updateUser");//cmd  注册
             object.put("userId", SmartHomeUtil.getUserName());//用户名
             object.put("password", oldPwd);//密码
             object.put("newPassword", newPwd);//密码

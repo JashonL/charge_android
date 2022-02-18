@@ -5,16 +5,14 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Bundle;
-
-import androidx.core.content.ContextCompat;
-
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.widget.Toolbar;
 
 import com.growatt.chargingpile.BaseActivity;
 import com.growatt.chargingpile.R;
@@ -36,46 +34,42 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
-public class RegisterActivity extends BaseActivity {
+public class UserRegisterActivity extends BaseActivity {
 
-    @BindView(R.id.headerView)
-    LinearLayout headerView;
-    @BindView(R.id.tvTitle)
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.tv_title)
     TextView tvTitle;
-
-
     @BindView(R.id.et_username)
     EditText etUsername;
     @BindView(R.id.et_password)
     EditText etPassword;
-    @BindView(R.id.et_password_confirm)
-    EditText etConfirm;
-    @BindView(R.id.et_email)
-    EditText etEmail;
-    @BindView(R.id.checkBox)
-    CheckBox checkBox;
-    @BindView(R.id.textView4)
-    TextView terms;
-    @BindView(R.id.et_phone)
-    EditText etPhone;
-    @BindView(R.id.et_postcode)
-    EditText etPostCode;
+    @BindView(R.id.et_repeat_password)
+    EditText etRepeatPassword;
+    @BindView(R.id.et_user_email)
+    EditText etUserEmail;
+    @BindView(R.id.et_postal_code)
+    EditText etPostalCode;
+    @BindView(R.id.et_mobile_phonenum)
+    EditText etMobilePhoneNum;
     @BindView(R.id.et_installer)
-    EditText etInstanller;
+    EditText etInstaller;
     @BindView(R.id.et_installer_email)
     EditText etInstallerEmail;
-    @BindView(R.id.et_installer_phone)
+    @BindView(R.id.et_installser_phone)
     EditText etInstallerPhone;
     @BindView(R.id.et_installer_address)
     EditText etInstallerAddress;
     @BindView(R.id.tv_installer_date)
-    TextView tvInstallerDate;
-    @BindView(R.id.et_serial_number)
-    TextView etSerialNumber;
+    TextView etInstallerDate;
+    @BindView(R.id.et_charge_sn)
+    EditText etChargeSn;
+    @BindView(R.id.textView4)
+    TextView terms;
+    @BindView(R.id.checkBox)
+    CheckBox checkBox;
 
-    private Unbinder bind;
     private Calendar calendar = Calendar.getInstance();
     private String username;
     private String password;
@@ -92,19 +86,17 @@ public class RegisterActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
-        bind = ButterKnife.bind(this);
+        setContentView(R.layout.activity_user_register);
+
+        ButterKnife.bind(this);
         initHeaderView();
         initViews();
-
     }
 
+
     private void initHeaderView() {
-        tvTitle.setTextColor(ContextCompat.getColor(this, R.color.title_1));
+        initToobar(toolbar);
         tvTitle.setText(getString(R.string.m23注册));
-        //设置字体加粗
-        tvTitle.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
-        setHeaderImage(headerView, R.drawable.back, Position.LEFT, v -> finish());
     }
 
 
@@ -127,7 +119,7 @@ public class RegisterActivity extends BaseActivity {
                     String sbDate = year +
                             "-" + ((month + 1) < 10 ? "0" + (month + 1) : (month + 1)) +
                             "-" + ((dayOfMonth < 10) ? "0" + dayOfMonth : dayOfMonth);
-                    tvInstallerDate.setText(sbDate);
+                    etInstallerDate.setText(sbDate);
                 }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)) {
                     @Override
                     protected void onStop() {
@@ -142,15 +134,15 @@ public class RegisterActivity extends BaseActivity {
     private void register() {
         username = etUsername.getText().toString().trim();
         password = etPassword.getText().toString().trim();
-        email = etEmail.getText().toString().trim();
-        postCode = etPostCode.getText().toString().trim();
-        phone = etPhone.getText().toString().trim();
-        installer = etInstanller.getText().toString().trim();
+        email = etUserEmail.getText().toString().trim();
+        postCode = etPostalCode.getText().toString().trim();
+        phone = etMobilePhoneNum.getText().toString().trim();
+        installer = etInstaller.getText().toString().trim();
         installerEmail = etInstallerEmail.getText().toString().trim();
         installerPhone = etInstallerPhone.getText().toString().trim();
         installerAddress = etInstallerAddress.getText().toString().trim();
-        installerDate = tvInstallerDate.getText().toString().trim();
-        installChargeId = etSerialNumber.getText().toString().trim();
+        installerDate = etInstallerDate.getText().toString().trim();
+        installChargeId = etChargeSn.getText().toString().trim();
 
         if (TextUtils.isEmpty(username)) {
             toast(R.string.m21用户名密码为空);
@@ -170,12 +162,12 @@ public class RegisterActivity extends BaseActivity {
             return;
         }
 
-        if (TextUtils.isEmpty(String.valueOf(etConfirm.getText()))) {
+        if (TextUtils.isEmpty(String.valueOf(etRepeatPassword.getText()))) {
             toast(R.string.m21用户名密码为空);
             return;
         }
 
-        if (!etPassword.getText().toString().trim().equals(etConfirm.getText().toString().trim())) {
+        if (!etPassword.getText().toString().trim().equals(etRepeatPassword.getText().toString().trim())) {
             toast(R.string.m98请输入相同的密码);
             return;
         }
@@ -335,5 +327,6 @@ public class RegisterActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
     }
+
 
 }

@@ -106,7 +106,7 @@ public class SearchDeviceActivity extends BaseActivity {
         if (!TextUtils.isEmpty(devSn)){
             jsonMap.put("chargeId", devSn);
         }
-        jsonMap.put("cmd", "list");
+        jsonMap.put("command", "list");
         jsonMap.put("lan", getLanguage());
         String json = SmartHomeUtil.mapToJsonString(jsonMap);
         LogUtil.i(json);

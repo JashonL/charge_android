@@ -105,7 +105,7 @@ public class ForgotPasswordActivity extends BaseActivity {
         Mydialog.Show(this);
         JSONObject object = new JSONObject();
         try {
-            object.put("cmd", "invalidPassword");//cmd  注册
+            object.put("command", "invalidPassword");//cmd  注册
             object.put("userId", username);//用户名
             object.put("phone", phone);//密码
             object.put("email", email);//密码

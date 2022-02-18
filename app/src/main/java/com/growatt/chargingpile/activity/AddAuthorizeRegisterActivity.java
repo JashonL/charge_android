@@ -461,7 +461,7 @@ public class AddAuthorizeRegisterActivity extends BaseActivity {
         Mydialog.Show(this);
         JSONObject object = new JSONObject();
         try {
-            object.put("cmd", "register");//cmd  注册
+            object.put("command", "register");//cmd  注册
             object.put("userId",username);//用户名
             object.put("roleId", "endUser");//角色
             object.put("phone",phone);

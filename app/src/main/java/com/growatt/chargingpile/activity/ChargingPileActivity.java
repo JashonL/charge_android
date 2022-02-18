@@ -1381,7 +1381,7 @@ public class ChargingPileActivity extends BaseActivity implements BaseQuickAdapt
     public void onClickListener(View view) {
         switch (view.getId()) {
             case R.id.ivLeft:
-                Intent intent = new Intent(this, MeActivity.class);
+                Intent intent = new Intent(this, UserCenterActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 jumpTo(intent, false);
                 break;
@@ -1470,7 +1470,7 @@ public class ChargingPileActivity extends BaseActivity implements BaseQuickAdapt
     private void getNoConfigParams() {
         Map<String, Object> jsonMap = new HashMap<>();
         jsonMap.put("userId", SmartHomeUtil.getUserName());//测试id
-        jsonMap.put("cmd", "noConfig");
+        jsonMap.put("command", "noConfig");
         jsonMap.put("lan", getLanguage());
         String json = SmartHomeUtil.mapToJsonString(jsonMap);
         LogUtil.i(json);
@@ -1716,7 +1716,7 @@ public class ChargingPileActivity extends BaseActivity implements BaseQuickAdapt
     private void requestUnlock() {
         Mydialog.Show(this);
         Map<String, Object> jsonMap = new HashMap<>();
-        jsonMap.put("cmd", "unlock");//测试id
+        jsonMap.put("command", "unlock");//测试id
         jsonMap.put("chargeId", mCurrentPile.getChargeId());//测试id
         jsonMap.put("lan", getLanguage());//测试id
         jsonMap.put("userId", SmartHomeUtil.getUserName());//测试id

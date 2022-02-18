@@ -123,7 +123,7 @@ public class ChargingSetActivity extends BaseActivity {
     private void getNoConfigParams() {
         Map<String, Object> jsonMap = new HashMap<>();
         jsonMap.put("userId", SmartHomeUtil.getUserName());//测试id
-        jsonMap.put("cmd", "noConfig");
+        jsonMap.put("command", "noConfig");
         jsonMap.put("lan", getLanguage());
         String json = SmartHomeUtil.mapToJsonString(jsonMap);
         LogUtil.i(json);

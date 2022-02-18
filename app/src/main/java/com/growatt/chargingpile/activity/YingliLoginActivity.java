@@ -122,7 +122,7 @@ public class YingliLoginActivity extends BaseActivity {
                 break;
             case R.id.bt_register:
                 Intent intent = new Intent();
-                intent.setClass(this, RegisterActivity.class);
+                intent.setClass(this, UserRegisterActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("activity", "LoginActivity");
                 startActivity(intent);

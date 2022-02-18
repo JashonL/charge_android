@@ -15,7 +15,7 @@
         android:layout_marginTop="@dimen/xa138"
         android:gravity="center"
         android:text="@string/m109输入充电桩序列号添加充电桩"
-        android:textColor="@color/title_1"
+        android:textColor="@color/main_theme_text_color"
         android:textSize="@dimen/xa40"
         android:textStyle="bold" />
 
@@ -47,43 +47,41 @@
         android:layout_marginLeft="@dimen/xa75"
         android:layout_marginRight="@dimen/xa75"
         android:layout_marginTop="@dimen/xa96"
-        android:background="@drawable/selector_circle_btn_green"
+        android:background="@drawable/selector_button_maincolor"
         android:stateListAnimator="@null"
         android:text="@string/m9确定"
-        android:textColor="@color/headerView"
-        />
+        android:textColor="@color/headerView" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/xa60"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/ll_scan_add"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/xa90"
+            android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/xa60"
             android:gravity="center"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:paddingLeft="@dimen/xa24"
             android:paddingRight="@dimen/xa24">
 
             <ImageView
-                android:layout_width="@dimen/xa38"
-                android:layout_height="@dimen/xa36"
-                android:src="@drawable/scan_code_icon" />
+                android:layout_width="@dimen/xa200"
+                android:layout_height="@dimen/xa200"
+                android:src="@drawable/icon_scan" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/xa35"
+                android:layout_marginTop="@dimen/xa30"
                 android:background="@null"
                 android:gravity="center"
                 android:text="@string/m137扫码添加"
-                android:textColor="@color/charging_text_color_2"
-                android:textSize="@dimen/xa36"
-                android:layout_marginStart="@dimen/xa35" />
+                android:textColor="@color/main_theme_text_color"
+                android:textSize="@dimen/xa36" />
         </LinearLayout>
 
     </RelativeLayout>

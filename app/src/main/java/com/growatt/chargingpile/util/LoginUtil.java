@@ -358,7 +358,7 @@ public class LoginUtil {
         Mydialog.Show(context);
         JSONObject object = new JSONObject();
         try {
-            object.put("cmd", "login");//cmd  注册
+            object.put("command", "login");//cmd  注册
             object.put("userId",userName);//用户名
             object.put("password", password);//密码
             object.put("lan", getLanguage(context));

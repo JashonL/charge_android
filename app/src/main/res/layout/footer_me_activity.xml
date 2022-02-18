@@ -11,7 +11,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="@dimen/xa70"
         android:layout_marginTop="@dimen/xa70"
-        android:background="@drawable/selector_circle_btn_green"
+        android:background="@drawable/selector_button_maincolor"
         android:text="@string/m316退出登录"
         android:textColor="@color/headerView"
         android:textSize="@dimen/xa32" />
