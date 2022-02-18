@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -82,6 +83,21 @@ public abstract class BaseActivity extends AppCompatActivity implements EasyPerm
     }
 
 
+
+    public void initToobar(Toolbar toolbar){
+        if (toolbar!=null){
+            toolbar.setNavigationIcon(R.drawable.icon_back);
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+        }
+    }
+
+
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void aa(EmptyMsg msg) {
 
@@ -101,30 +117,11 @@ public abstract class BaseActivity extends AppCompatActivity implements EasyPerm
     public void initStatusBar() {
         //设置共同沉浸式样式
         mImmersionBar=  ImmersionBar.with(this);
-        mImmersionBar.statusBarDarkFont(true, 0.2f)//设置状态栏图片为深色，(如果android 6.0以下就是半透明)
+        mImmersionBar.statusBarDarkFont(false, 0.2f)//设置状态栏图片为深色，(如果android 6.0以下就是半透明)
                 .fitsSystemWindows(true)
                 .statusBarColor(R.color.white_background)//这里的颜色，你可以自定义。
                 .init();
 
-
-     /*   // 经测试在代码里直接声明透明状态栏更有效
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
-                localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
-            }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {//5.0 全透明实现
-                Window window = getWindow();
-                window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-                }
-                window.setStatusBarColor(Color.TRANSPARENT);//calculateStatusColor(Color.WHITE, (int) alphaValue)
-            }
-            //状态栏字体颜色设置
-            BarTextColorUtils.StatusBarLightMode(this);*/
     }
 
     public void savedInstanceState(Bundle b) {

@@ -150,9 +150,9 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" >
 
-
-
         </activity>
+
+
         <activity
             android:name=".activity.MeActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -276,12 +276,10 @@
         <activity android:name=".activity.YingliLoginActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
-            android:launchMode="singleTask"
-            >
+            android:launchMode="singleTask">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 

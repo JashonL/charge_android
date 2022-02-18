@@ -44,6 +44,13 @@
     <color name="title_bg_oss_selector">#80ffffff</color>
     <color name="red_color">#ff0000</color>
 
+
+
+    <color name="main_theme_text_color">#7C97FE</color> <!--头部颜色-->
+
+
+
+
     <!--标题颜色分级-->
     <color name="title_1">#333333</color>
     <color name="title_2">#666666</color>

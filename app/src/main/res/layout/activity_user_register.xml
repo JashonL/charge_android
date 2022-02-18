@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_background"
+    android:orientation="vertical">
+
+    <include layout="@layout/toobar_title" />
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/headerView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/xa40"
+                android:layout_marginEnd="@dimen/xa40"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:hint="@string/m90用户名"
+                app:hintTextAppearance="@style/hintAppearence"
+                app:layout_constraintTop_toBottomOf="@+id/headerView">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/forgot_user"
+                    android:drawablePadding="8dp"
+                    android:paddingBottom="@dimen/xa30"
+                    android:textSize="@dimen/size_content_sp_14" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/xa40"
+                android:layout_marginEnd="@dimen/xa40"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:hint="@string/m94电子邮箱"
+                app:hintTextAppearance="@style/hintAppearence"
+                app:layout_constraintTop_toBottomOf="@+id/headerView">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/register_password"
+                    android:drawablePadding="8dp"
+                    android:paddingBottom="@dimen/xa30"
+                    android:textSize="@dimen/size_content_sp_14" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_repeat_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/xa40"
+                android:layout_marginEnd="@dimen/xa40"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:hint="@string/m92重复密码"
+                app:hintTextAppearance="@style/hintAppearence"
+                app:layout_constraintTop_toBottomOf="@+id/headerView">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_repeat_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/repeat_password"
+                    android:drawablePadding="8dp"
+                    android:paddingBottom="@dimen/xa30"
+                    android:textSize="@dimen/size_content_sp_14" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_user_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/xa40"
+                android:layout_marginEnd="@dimen/xa40"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:hint="@string/m90用户名"
+                app:hintTextAppearance="@style/hintAppearence"
+                app:layout_constraintTop_toBottomOf="@+id/headerView">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_user_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/register_email"
+                    android:drawablePadding="8dp"
+                    android:paddingBottom="@dimen/xa30"
+                    android:textSize="@dimen/size_content_sp_14" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_postal_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/xa40"
+                android:layout_marginEnd="@dimen/xa40"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:hint="@string/m94电子邮箱"
+                app:hintTextAppearance="@style/hintAppearence"
+                app:layout_constraintTop_toBottomOf="@+id/headerView">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_postal_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/register_post_code"
+                    android:drawablePadding="8dp"
+                    android:paddingBottom="@dimen/xa30"
+                    android:textSize="@dimen/size_content_sp_14" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_mobile_phonenum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/xa40"
+                android:layout_marginEnd="@dimen/xa40"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:hint="@string/m104输入电话号码"
+                app:hintTextAppearance="@style/hintAppearence"
+                app:layout_constraintTop_toBottomOf="@+id/headerView">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_mobile_phonenum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/register_phone"
+                    android:drawablePadding="8dp"
+                    android:paddingBottom="@dimen/xa30"
+                    android:textSize="@dimen/size_content_sp_14" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_installer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/xa40"
+                android:layout_marginEnd="@dimen/xa40"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:hint="@string/m90用户名"
+                app:hintTextAppearance="@style/hintAppearence"
+                app:layout_constraintTop_toBottomOf="@+id/headerView">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_installer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/register_installer"
+                    android:drawablePadding="8dp"
+                    android:paddingBottom="@dimen/xa30"
+                    android:textSize="@dimen/size_content_sp_14" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_installer_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/xa40"
+                android:layout_marginEnd="@dimen/xa40"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:hint="@string/m94电子邮箱"
+                app:hintTextAppearance="@style/hintAppearence"
+                app:layout_constraintTop_toBottomOf="@+id/headerView">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_installer_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/register_email"
+                    android:drawablePadding="8dp"
+                    android:paddingBottom="@dimen/xa30"
+                    android:textSize="@dimen/size_content_sp_14" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_installer_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/xa40"
+                android:layout_marginEnd="@dimen/xa40"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:hint="@string/m104输入电话号码"
+                app:hintTextAppearance="@style/hintAppearence"
+                app:layout_constraintTop_toBottomOf="@+id/headerView">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_installser_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/register_phone"
+                    android:drawablePadding="8dp"
+                    android:paddingBottom="@dimen/xa30"
+                    android:textSize="@dimen/size_content_sp_14" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_installer_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/xa40"
+                android:layout_marginEnd="@dimen/xa40"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:hint="@string/m90用户名"
+                app:hintTextAppearance="@style/hintAppearence"
+                app:layout_constraintTop_toBottomOf="@+id/headerView">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_installer_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/register_location"
+                    android:drawablePadding="8dp"
+                    android:paddingBottom="@dimen/xa30"
+                    android:textSize="@dimen/size_content_sp_14" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_installer_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/xa40"
+                android:layout_marginEnd="@dimen/xa40"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:hint="@string/m94电子邮箱"
+                app:hintTextAppearance="@style/hintAppearence"
+                app:layout_constraintTop_toBottomOf="@+id/headerView">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_installer_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/register_date"
+                    android:drawablePadding="8dp"
+                    android:paddingBottom="@dimen/xa30"
+                    android:textSize="@dimen/size_content_sp_14" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_charge_sn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/xa40"
+                android:layout_marginEnd="@dimen/xa40"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:hint="@string/m104输入电话号码"
+                app:hintTextAppearance="@style/hintAppearence"
+                app:layout_constraintTop_toBottomOf="@+id/headerView">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_charge_sn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/register_charger"
+                    android:drawablePadding="8dp"
+                    android:paddingBottom="@dimen/xa30"
+                    android:textSize="@dimen/size_content_sp_14" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/xa140">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="@dimen/xa398"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="@string/m33同意本公司各项用户条款及隐私政策"
+                    android:textColor="@color/title_3"
+                    android:textSize="@dimen/xa37" />
+
+                <CheckBox
+                    android:id="@+id/checkBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@+id/textView4"
+                    android:layout_toLeftOf="@+id/textView4"
+                    android:button="@drawable/selector_checkbox_bg_white"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:textColor="@color/headerView"
+                    android:textSize="@dimen/xa28" />
+            </RelativeLayout>
+
+
+
+            <Button
+                android:id="@+id/btFinish"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/xa88"
+                android:layout_marginLeft="@dimen/xa75"
+                android:layout_marginTop="@dimen/xa80"
+                android:layout_marginRight="@dimen/xa75"
+                android:background="@drawable/shape_gradient"
+                android:text="@string/m3完成"
+                android:layout_marginBottom="@dimen/xa30"
+                android:textColor="@color/headerView" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+
+</LinearLayout>

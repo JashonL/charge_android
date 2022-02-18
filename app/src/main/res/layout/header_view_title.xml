@@ -5,8 +5,7 @@
     android:layout_height="wrap_content"
     android:background="@color/headerView"
     android:minHeight="?attr/actionBarSize"
-    android:orientation="vertical"
-    android:paddingTop="@dimen/status_bar_height">
+    android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/relativeLayout1"
