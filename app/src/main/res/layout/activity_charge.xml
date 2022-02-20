@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/rl_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/status_bar_height">
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/header_height">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/xa70"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/ivRight"
+                android:layout_toLeftOf="@+id/ivRight"
+                android:layout_toEndOf="@+id/ivLeft"
+                android:layout_toRightOf="@+id/ivLeft"
+                android:gravity="center"
+                android:text="@string/m102充电桩"
+                android:textColor="@color/headerView"
+                android:textSize="@dimen/xa37" />
+
+            <ImageView
+                android:id="@+id/ivLeft"
+                android:layout_width="@dimen/xa105"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:background="@drawable/selector_transparent_background"
+                android:paddingLeft="@dimen/xa18"
+                android:paddingTop="@dimen/xa35"
+                android:paddingRight="@dimen/xa18"
+                android:paddingBottom="@dimen/xa35" />
+
+
+            <ImageView
+                android:id="@+id/ivRight"
+                android:layout_width="@dimen/xa105"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:paddingTop="@dimen/xa32"
+                android:paddingRight="@dimen/xa11"
+                android:paddingBottom="@dimen/xa32" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/xa146"
+            android:layout_below="@+id/relativeLayout1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_charging"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/xa30"
+                android:layout_marginEnd="@dimen/xa30"
+                android:layout_weight="1"
+                android:background="@drawable/shape_circle_btn_white_normal"
+                android:padding="@dimen/xa20" />
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/xa10"
+                android:layout_marginEnd="@dimen/xa30"
+                android:src="@drawable/add_charge" />
+
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/srl_pull"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/rl_Charging"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible">
+
+
+                <RelativeLayout
+                    android:id="@+id/rl_solar"
+                    android:layout_width="@dimen/xa140"
+                    android:layout_height="@dimen/xa44"
+                    android:layout_marginLeft="@dimen/xa28"
+                    android:layout_marginTop="@dimen/xa28"
+                    android:background="@drawable/shape_button_gradient_normal"
+                    android:gravity="center"
+                    android:visibility="visible">
+
+                    <ImageView
+                        android:id="@+id/iv_limit"
+                        android:layout_width="@dimen/xa28"
+                        android:layout_height="@dimen/xa28"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/limit_power_off" />
+
+                    <TextView
+                        android:id="@+id/tv_solar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/xa10"
+                        android:layout_marginLeft="@dimen/xa10"
+                        android:layout_toEndOf="@+id/iv_limit"
+                        android:layout_toRightOf="@+id/iv_limit"
+                        android:text="@string/solar"
+                        android:textColor="@color/headerView"
+                        android:textSize="@dimen/xa28" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_lock"
+                    android:layout_width="@dimen/xa140"
+                    android:layout_height="@dimen/xa44"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/xa28"
+                    android:layout_marginEnd="@dimen/xa28"
+                    android:layout_marginRight="@dimen/xa28"
+                    android:background="@drawable/shape_button_gradient_normal"
+                    android:gravity="center"
+                    android:visibility="visible">
+
+
+                    <TextView
+                        android:id="@+id/tv_lock"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/xa10"
+                        android:layout_marginLeft="@dimen/xa10"
+                        android:gravity="center"
+                        android:text="@string/m解锁"
+                        android:textColor="@color/white_background"
+                        android:textSize="@dimen/xa28" />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/linearlayout1"
+                    android:layout_width="@dimen/xa389"
+                    android:layout_height="@dimen/xa389"
+                    android:layout_centerHorizontal="true"
+                    android:orientation="vertical">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:id="@+id/rl_chargingSet"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:id="@+id/iv_charging_icon"
+                                android:layout_width="@dimen/xa210"
+                                android:layout_height="@dimen/xa252"
+                                android:layout_centerHorizontal="true"
+                                android:layout_gravity="center_horizontal"
+                                android:src="@drawable/charge_icon" />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_charging_icon"
+                                android:layout_marginTop="@dimen/xa12"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:id="@+id/tv_AC_DC"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:padding="@dimen/xa5"
+                                    android:singleLine="true"
+                                    android:text="DC"
+                                    android:textColor="@color/white_background"
+                                    android:textSize="@dimen/xa28" />
+
+                                <View
+                                    android:id="@+id/vDivider"
+                                    android:layout_width="@dimen/xa1"
+                                    android:layout_height="@dimen/xa35"
+                                    android:layout_centerVertical="true"
+                                    android:layout_toRightOf="@+id/tv_AC_DC"
+                                    android:background="@color/white_background" />
+
+                                <TextView
+                                    android:id="@+id/tv_Gun"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_toEndOf="@+id/vDivider"
+                                    android:layout_toRightOf="@+id/vDivider"
+                                    android:padding="@dimen/xa5"
+                                    android:singleLine="true"
+                                    android:text="@string/m114单枪"
+                                    android:textColor="@color/white_background"
+                                    android:textSize="@dimen/xa28" />
+                            </RelativeLayout>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/rl_switch_gun"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/xa10"
+                            android:background="@drawable/shape_solid_all_stroke_white"
+                            android:minWidth="@dimen/xa150"
+                            android:padding="@dimen/xa5"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/rl_chargingSet">
+
+                            <TextView
+                                android:id="@+id/tvSwitchGun"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/xa5"
+                                android:gravity="center"
+                                android:singleLine="true"
+                                android:text="@string/m110A枪"
+                                android:textColor="@color/main_text_color"
+                                android:textSize="@dimen/xa30" />
+
+                            <ImageView
+                                android:id="@+id/ivDrop"
+                                android:layout_width="@dimen/xa28"
+                                android:layout_height="@dimen/xa28"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="@dimen/xa5"
+                                android:layout_marginRight="@dimen/xa5"
+                                android:layout_toRightOf="@+id/tvSwitchGun"
+                                android:src="@drawable/gun_drop" />
+                        </RelativeLayout>
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:text="@string/m117空闲"
+                            android:textColor="@color/charging_text_color_2"
+                            android:textSize="@dimen/size_content_sp_14"
+                            app:autoSizeMaxTextSize="@dimen/size_content_sp_14"
+                            app:autoSizeMinTextSize="@dimen/size_content_sp_8"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="@+id/rl_switch_gun"
+                            app:layout_constraintLeft_toRightOf="@+id/rl_switch_gun"
+                            app:layout_constraintTop_toTopOf="@+id/rl_switch_gun" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <ImageView
+                        android:id="@+id/iv_anim"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/xa27"
+                        android:src="@drawable/charging_roll_anim"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/iv_circle_background"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/xa27"
+                        android:src="@drawable/charging_finish_anim"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/linearlayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/linearlayout3"
+                    android:layout_below="@+id/linearlayout1"
+                    android:layout_marginTop="@dimen/xa20"
+                    android:orientation="vertical">
+
+                    <!--空闲-->
+                    <!--<include layout="@laystatus_charging_freefree"/>-->
+                    <!--准备中-->
+                    <!--<include layout="@layout/status_charging_prepare_layout"/>-->
+                    <!--手动充电-->
+                    <!--<include layout="@layout/status_charging_normal_layout" />-->
+                    <!--预设充电-->
+                    <!--<include layout="@layout/status_charging_preset_layout"/>-->
+                    <!--故障-->
+                    <!--<TextView
+                          android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:textColor="@color/title_3"
+                        android:textSize="@dimen/xa30"
+                        android:text="充电桩发生故障" />-->
+                    <!--不可用-->
+                    <!-- <TextView
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         android:gravity="center"
+                         android:text="充电桩不可用"
+                         android:textColor="@color/title_3"
+                         android:textSize="@dimen/xa30" />-->
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/linearlayout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/xa136"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:id="@+id/ll_Authorization"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="@dimen/xa39"
+                            android:layout_height="@dimen/xa39"
+                            android:layout_marginTop="@dimen/xa18"
+                            android:gravity="center"
+                            android:src="@drawable/charge_setting" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/xa15"
+                            android:layout_marginTop="@dimen/xa18"
+                            android:gravity="center"
+                            android:text="@string/m105桩体设置"
+                            android:textColor="@color/white_background"
+                            android:textSize="@dimen/xa30" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_charging"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/iv_charging_status"
+                            android:layout_width="@dimen/xa60"
+                            android:layout_height="@dimen/xa60"
+                            android:gravity="center"
+                            android:src="@drawable/btn_start_charging" />
+
+                        <com.growatt.chargingpile.view.AutofitTextView
+                            android:id="@+id/tv_charging_status"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:text="@string/m340取消预约"
+                            android:textColor="@color/white_background"
+                            android:textSize="@dimen/xa30" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_record"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="@dimen/xa39"
+                            android:layout_height="@dimen/xa39"
+                            android:layout_marginTop="@dimen/xa18"
+                            android:gravity="center"
+                            android:src="@drawable/charging_record" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/xa15"
+                            android:layout_marginTop="@dimen/xa18"
+                            android:gravity="center"
+                            android:text="@string/m104充电记录"
+                            android:textColor="@color/white_background"
+                            android:textSize="@dimen/xa30" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+            <include
+                layout="@layout/charging_no_device_layout"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</LinearLayout>
