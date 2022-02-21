@@ -74,8 +74,8 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     public void initStatusBar() {
-        //设置共同沉浸式样式
-        ImmersionBar.with(this).navigationBarColor(R.color.colorPrimary).init();
+        mImmersionBar = ImmersionBar.with(this);
+        mImmersionBar.keyboardEnable(true).init();
     }
 
 
