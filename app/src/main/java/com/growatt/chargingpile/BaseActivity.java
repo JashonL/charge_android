@@ -71,7 +71,7 @@ public abstract class BaseActivity extends AppCompatActivity implements EasyPerm
         super.onCreate(savedInstanceState);
         //沉浸式状态栏处理
         initStatusBar();
-        BarTextColorUtils.StatusBarLightMode(this);
+//        BarTextColorUtils.StatusBarLightMode(this);
         mContext = this;
         x.view().inject(this);
         if (savedInstanceState != null) {

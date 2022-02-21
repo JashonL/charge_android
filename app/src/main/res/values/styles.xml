@@ -21,8 +21,7 @@
         <item name="android:windowIsTranslucent">true</item>
         <item name="colorAccent">#7C97FE</item>
         <item name="android:windowContentOverlay">@null</item>
-        <!--<item name="android:windowAnimationStyle">@style/FadeAnimationStyle</item>-->
-        <!--<item name="android:windowAnimationStyle">@style/OutInAnimTheme</item>-->
+
     </style>
 
 

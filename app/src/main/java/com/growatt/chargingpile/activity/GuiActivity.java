@@ -45,7 +45,7 @@ public class GuiActivity extends BaseActivity {
             SharedPreferencesUnit.getInstance(this).putInt("num",1);
         }else {
             if (Cons.userBean!=null){
-                Intent intent=new Intent(this,ChargingPileActivity.class);
+                Intent intent=new Intent(this,ChargingMainActivity.class);
                 intent.putExtra("chargeId",chargeId);
                 jumpTo(intent,true);
             }else {

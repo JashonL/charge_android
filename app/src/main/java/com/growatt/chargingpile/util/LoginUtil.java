@@ -6,6 +6,7 @@ import android.content.Intent;
 
 import com.google.gson.Gson;
 import com.growatt.chargingpile.R;
+import com.growatt.chargingpile.activity.ChargingMainActivity;
 import com.growatt.chargingpile.activity.ChargingPileActivity;
 import com.growatt.chargingpile.activity.LoginActivity;
 import com.growatt.chargingpile.activity.YingliLoginActivity;
@@ -178,7 +179,7 @@ public class LoginUtil {
                 SharedPreferencesUnit.getInstance(context).putInt(Constant.AUTO_LOGIN_TYPE, autoLoginType);
                 enableListener.onViewEnable();
                 if (loginType == 0 || loginType == 2) {
-                    jumpActivity(context, ChargingPileActivity.class);
+                    jumpActivity(context, ChargingMainActivity.class);
                 }
                 Mydialog.Dismiss();
             } else {
@@ -402,7 +403,7 @@ public class LoginUtil {
                         SharedPreferencesUnit.getInstance(context).putInt(Constant.AUTO_LOGIN, autoLogin);
                         SharedPreferencesUnit.getInstance(context).putInt(Constant.AUTO_LOGIN_TYPE, autoLoginType);
                         enableListener.onViewEnable();
-                        jumpActivity(context, ChargingPileActivity.class);
+                        jumpActivity(context, ChargingMainActivity.class);
                     }else {
                         String errorMsg = object.optString("data");
                         enableListener.onViewEnable();

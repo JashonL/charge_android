@@ -25,14 +25,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/m198预设充电方案"
-                    android:textColor="@color/title_1"
+                    android:textColor="@color/white_background"
                     android:textSize="@dimen/xa30" />
 
                 <com.growatt.chargingpile.view.AutoFitTextViewTwo
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/m199达到预设停止充电"
-                    android:textColor="@color/title_3"
+                    android:textColor="@color/white_background"
                     android:textSize="@dimen/xa24" />
             </LinearLayout>
 
@@ -55,10 +55,10 @@
                         android:id="@+id/iv_money"
                         android:layout_width="@dimen/xa24"
                         android:layout_height="@dimen/xa24"
-                        android:layout_marginLeft="@dimen/xa16"
                         android:layout_marginStart="@dimen/xa16"
+                        android:layout_marginLeft="@dimen/xa16"
                         android:layout_marginTop="@dimen/xa18"
-                        android:src="@drawable/charging_money" />
+                        android:src="@drawable/preset_money" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -102,7 +102,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
-                            android:textColor="@color/title_1"
+                            android:textColor="@color/main_theme_text_color"
                             android:textSize="@dimen/xa30" />
 
                         <ImageView
@@ -110,8 +110,8 @@
                             android:layout_width="@dimen/xa10"
                             android:layout_height="@dimen/xa16"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="@dimen/xa8"
                             android:layout_marginStart="@dimen/xa8"
+                            android:layout_marginLeft="@dimen/xa8"
                             android:layout_toEndOf="@+id/tv_prepare_money_num"
                             android:layout_toRightOf="@+id/tv_prepare_money_num"
                             android:src="@drawable/charger_device_item_more" />
@@ -135,10 +135,10 @@
                         android:id="@+id/iv_ele"
                         android:layout_width="@dimen/xa24"
                         android:layout_height="@dimen/xa24"
-                        android:layout_marginLeft="@dimen/xa16"
                         android:layout_marginStart="@dimen/xa16"
+                        android:layout_marginLeft="@dimen/xa16"
                         android:layout_marginTop="@dimen/xa18"
-                        android:src="@drawable/charging_ele" />
+                        android:src="@drawable/preset_energy" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -181,7 +181,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
-                            android:textColor="@color/title_1"
+                            android:textColor="@color/main_theme_text_color"
                             android:textSize="@dimen/xa30" />
 
                         <ImageView
@@ -214,10 +214,9 @@
                         android:id="@+id/iv_time"
                         android:layout_width="@dimen/xa24"
                         android:layout_height="@dimen/xa24"
-                        android:layout_marginLeft="@dimen/xa16"
                         android:layout_marginStart="@dimen/xa16"
-                        android:layout_marginTop="@dimen/xa18"
-                        android:src="@drawable/charging_time" />
+                        android:layout_marginLeft="@dimen/xa16"
+                        android:layout_marginTop="@dimen/xa18" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -260,7 +259,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
-                            android:textColor="@color/title_1"
+                            android:textColor="@color/main_theme_text_color"
                             android:textSize="@dimen/xa30" />
 
                         <ImageView
@@ -293,7 +292,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/m203预约充电"
-                    android:textColor="@color/title_1"
+                    android:textColor="@color/white_background"
                     android:textSize="@dimen/xa30" />
 
             </LinearLayout>
@@ -326,12 +325,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/xa17"
                         android:layout_marginStart="@dimen/xa17"
+                        android:layout_marginLeft="@dimen/xa17"
                         android:layout_toEndOf="@+id/iv_clock"
                         android:layout_toRightOf="@+id/iv_clock"
                         android:text="@string/m204开始时间"
-                        android:textColor="@color/title_3"
+                        android:textColor="@color/main_theme_text_color"
                         android:textSize="@dimen/xa24" />
 
 
@@ -383,12 +382,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/xa21"
                         android:layout_marginStart="@dimen/xa21"
+                        android:layout_marginLeft="@dimen/xa21"
                         android:layout_toEndOf="@+id/cb_everyday"
                         android:layout_toRightOf="@+id/cb_everyday"
                         android:text="@string/m186每天"
-                        android:textColor="@color/title_2"
+                        android:textColor="@color/main_theme_text_color"
                         android:textSize="@dimen/xa24" />
 
 

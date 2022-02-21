@@ -7,16 +7,23 @@
     android:orientation="vertical">
 
 
+    <View
+        android:id="@+id/status_bar_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+
     <RelativeLayout
         android:id="@+id/rl_header"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/status_bar_height">
+        android:layout_height="wrap_content">
+
+
 
         <RelativeLayout
             android:id="@+id/relativeLayout1"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/header_height">
+            android:layout_height="?attr/actionBarSize">
 
             <TextView
                 android:id="@+id/tvTitle"
@@ -78,10 +85,11 @@
 
 
             <ImageView
+                android:id="@+id/iv_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/xa10"
                 android:layout_marginEnd="@dimen/xa30"
+                android:padding="@dimen/xa10"
                 android:src="@drawable/add_charge" />
 
 
@@ -98,7 +106,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <RelativeLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/rl_Charging"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -113,7 +121,9 @@
                     android:layout_marginTop="@dimen/xa28"
                     android:background="@drawable/shape_button_gradient_normal"
                     android:gravity="center"
-                    android:visibility="visible">
+                    android:visibility="visible"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
                         android:id="@+id/iv_limit"
@@ -140,14 +150,14 @@
                     android:id="@+id/rl_lock"
                     android:layout_width="@dimen/xa140"
                     android:layout_height="@dimen/xa44"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
                     android:layout_marginTop="@dimen/xa28"
                     android:layout_marginEnd="@dimen/xa28"
                     android:layout_marginRight="@dimen/xa28"
                     android:background="@drawable/shape_button_gradient_normal"
                     android:gravity="center"
-                    android:visibility="visible">
+                    android:visibility="visible"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
 
                     <TextView
@@ -167,17 +177,19 @@
                 <RelativeLayout
                     android:id="@+id/linearlayout1"
                     android:layout_width="@dimen/xa389"
-                    android:layout_height="@dimen/xa389"
-                    android:layout_centerHorizontal="true"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <RelativeLayout
+                        <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/rl_chargingSet"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -185,20 +197,36 @@
                             app:layout_constraintRight_toRightOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 
+
+                            <ImageView
+                                android:id="@+id/iv_gif"
+                                android:layout_width="@dimen/xa300"
+                                android:layout_height="@dimen/xa150"
+                                android:layout_marginTop="@dimen/xa30"
+                                android:src="@drawable/charge_charging"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+
                             <ImageView
                                 android:id="@+id/iv_charging_icon"
                                 android:layout_width="@dimen/xa210"
                                 android:layout_height="@dimen/xa252"
                                 android:layout_centerHorizontal="true"
                                 android:layout_gravity="center_horizontal"
-                                android:src="@drawable/charge_icon" />
+                                android:layout_marginTop="@dimen/xa70"
+                                android:src="@drawable/charge_icon"
+                                app:layout_constraintLeft_toLeftOf="@+id/iv_gif"
+                                app:layout_constraintRight_toRightOf="@+id/iv_gif"
+                                app:layout_constraintTop_toTopOf="@+id/iv_gif" />
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_below="@+id/iv_charging_icon"
                                 android:layout_marginTop="@dimen/xa12"
-                                android:gravity="center">
+                                android:gravity="center"
+                                app:layout_constraintTop_toBottomOf="@+id/iv_charging_icon">
 
                                 <TextView
                                     android:id="@+id/tv_AC_DC"
@@ -232,7 +260,7 @@
                                     android:textSize="@dimen/xa28" />
                             </RelativeLayout>
 
-                        </RelativeLayout>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <RelativeLayout
                             android:id="@+id/rl_switch_gun"
@@ -286,32 +314,17 @@
                             app:layout_constraintTop_toTopOf="@+id/rl_switch_gun" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <ImageView
-                        android:id="@+id/iv_anim"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="@dimen/xa27"
-                        android:src="@drawable/charging_roll_anim"
-                        android:visibility="gone" />
-
-                    <ImageView
-                        android:id="@+id/iv_circle_background"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="@dimen/xa27"
-                        android:src="@drawable/charging_finish_anim"
-                        android:visibility="gone" />
                 </RelativeLayout>
 
 
                 <LinearLayout
                     android:id="@+id/linearlayout2"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_above="@+id/linearlayout3"
-                    android:layout_below="@+id/linearlayout1"
+                    android:layout_height="0dp"
                     android:layout_marginTop="@dimen/xa20"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toTopOf="@+id/linearlayout3"
+                    app:layout_constraintTop_toBottomOf="@+id/linearlayout1">
 
                     <!--空闲-->
                     <!--<include layout="@laystatus_charging_freefree"/>-->
@@ -344,10 +357,11 @@
                 <LinearLayout
                     android:id="@+id/linearlayout3"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/xa136"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:orientation="horizontal"
-                    android:visibility="visible">
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent">
 
                     <LinearLayout
                         android:id="@+id/ll_Authorization"
@@ -385,20 +399,23 @@
 
                         <ImageView
                             android:id="@+id/iv_charging_status"
-                            android:layout_width="@dimen/xa60"
-                            android:layout_height="@dimen/xa60"
+                            android:layout_width="@dimen/xa110"
+                            android:layout_height="@dimen/xa110"
                             android:gravity="center"
                             android:src="@drawable/btn_start_charging" />
 
-                        <com.growatt.chargingpile.view.AutofitTextView
+                        <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/tv_charging_status"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:singleLine="true"
                             android:text="@string/m340取消预约"
+                            app:autoSizeTextType="uniform"
+                            app:autoSizeMaxTextSize="@dimen/size_content_sp_14"
+                            app:autoSizeMinTextSize="@dimen/size_content_note"
                             android:textColor="@color/white_background"
-                            android:textSize="@dimen/xa30" />
+                            android:textSize="@dimen/size_content_sp_14" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -428,7 +445,7 @@
                     </LinearLayout>
                 </LinearLayout>
 
-            </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             <include

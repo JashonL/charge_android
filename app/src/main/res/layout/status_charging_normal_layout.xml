@@ -29,7 +29,7 @@
                     android:layout_height="0dp"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:src="@drawable/charging_record_ele" />
+                    android:src="@drawable/preset_energy" />
 
                 <TextView
                     android:id="@+id/tv_charging_ele"
@@ -37,7 +37,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:textColor="@color/title_1"
+                    android:textColor="@color/main_theme_text_color"
                     android:textSize="@dimen/xa36" />
 
                 <TextView
@@ -66,7 +66,7 @@
                     android:layout_height="0dp"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:src="@drawable/charging_rate" />
+                    android:src="@drawable/preset_rate" />
 
                 <TextView
                     android:id="@+id/tv_charging_rate"
@@ -74,7 +74,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:textColor="@color/title_1"
+                    android:textColor="@color/main_theme_text_color"
                     android:textSize="@dimen/xa36" />
 
                 <TextView
@@ -103,7 +103,7 @@
                     android:layout_height="0dp"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:src="@drawable/charging_current" />
+                    android:src="@drawable/preset_current" />
 
                 <TextView
                     android:id="@+id/tv_charging_current"
@@ -111,7 +111,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:textColor="@color/title_1"
+                    android:textColor="@color/main_theme_text_color"
                     android:textSize="@dimen/xa36" />
 
                 <TextView
@@ -142,7 +142,7 @@
                     android:layout_height="0dp"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:src="@drawable/charging_time" />
+                    android:src="@drawable/preset_time" />
 
                 <TextView
                     android:id="@+id/tv_charging_duration"
@@ -150,7 +150,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:textColor="@color/title_1"
+                    android:textColor="@color/main_theme_text_color"
                     android:textSize="@dimen/xa36" />
 
                 <TextView
@@ -181,7 +181,7 @@
                     android:layout_height="0dp"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:src="@drawable/charging_money" />
+                    android:src="@drawable/preset_money" />
 
                 <TextView
                     android:id="@+id/tv_charging_money"
@@ -189,7 +189,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:textColor="@color/title_1"
+                    android:textColor="@color/main_theme_text_color"
                     android:textSize="@dimen/xa36" />
 
                 <TextView
@@ -219,7 +219,7 @@
                     android:layout_height="0dp"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:src="@drawable/charging_voltage" />
+                    android:src="@drawable/preset_vol" />
 
                 <TextView
                     android:id="@+id/tv_current_voltage"
@@ -227,7 +227,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:textColor="@color/title_1"
+                    android:textColor="@color/main_theme_text_color"
                     android:textSize="@dimen/xa36" />
 
                 <TextView

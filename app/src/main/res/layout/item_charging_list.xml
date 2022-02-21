@@ -29,7 +29,7 @@
             android:ellipsize="end"
             android:lines="1"
             android:gravity="center"
-            android:textColor="@color/title_bg_blue"
+            android:textColor="@color/main_theme_text_color"
             android:textSize="@dimen/xa28" />
     </LinearLayout>
 

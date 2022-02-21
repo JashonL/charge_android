@@ -30,7 +30,7 @@
                     android:gravity="center"
                     android:padding="@dimen/ya10"
                     android:text="@string/m334预约时间"
-                    android:textColor="@color/title_1"
+                    android:textColor="@color/white_background"
                     android:textSize="@dimen/ya30" />
 
                 <TextView
@@ -41,7 +41,7 @@
                     android:gravity="center"
                     android:padding="@dimen/ya10"
                     android:text="@string/m152充电费率"
-                    android:textColor="@color/title_1"
+                    android:textColor="@color/white_background"
                     android:textSize="@dimen/ya30" />
             </LinearLayout>
 
@@ -68,7 +68,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:textColor="@color/title_1"
+                        android:textColor="@color/main_theme_text_color"
                         android:textSize="@dimen/xa36" />
 
                     <com.growatt.chargingpile.view.AutoFitTextViewTwo
@@ -77,7 +77,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:textColor="@color/title_1"
+                        android:textColor="@color/main_theme_text_color"
                         android:textSize="@dimen/xa36" />
                 </LinearLayout>
 
@@ -113,7 +113,7 @@
                 android:paddingLeft="@dimen/xa20"
                 android:singleLine="true"
                 android:text="@string/m178定时"
-                android:textColor="@color/title_1"
+                android:textColor="@color/main_theme_text_color"
                 android:textSize="@dimen/xa36"
                 app:layout_constraintBottom_toTopOf="@+id/tv_preset_type"
                 app:layout_constraintLeft_toLeftOf="@+id/view_preset_background"
@@ -130,7 +130,7 @@
                 android:paddingLeft="@dimen/xa20"
                 android:singleLine="true"
                 android:text="@string/m178定时"
-                android:textColor="@color/title_1"
+                android:textColor="@color/main_theme_text_color"
                 android:textSize="@dimen/xa28"
                 app:layout_constraintBottom_toBottomOf="@+id/view_preset_background"
                 app:layout_constraintLeft_toLeftOf="@+id/view_preset_background"
@@ -181,7 +181,7 @@
                 android:gravity="center_vertical"
                 android:singleLine="true"
                 android:text="30"
-                android:textColor="@color/title_1"
+                android:textColor="@color/main_theme_text_color"
                 android:textSize="@dimen/xa36"
                 app:layout_constraintBottom_toTopOf="@+id/tv_type_text"
                 app:layout_constraintLeft_toRightOf="@+id/icon_charged_type"
@@ -195,7 +195,7 @@
                 android:gravity="center_vertical"
                 android:singleLine="true"
                 android:text="@string/m194当前电压"
-                android:textColor="@color/title_1"
+                android:textColor="@color/main_theme_text_color"
                 android:textSize="@dimen/xa28"
                 app:layout_constraintBottom_toBottomOf="@+id/view_cost_background"
                 app:layout_constraintLeft_toLeftOf="@+id/tv_preset_value_cal"
@@ -216,7 +216,7 @@
                 android:layout_height="@dimen/xa130"
                 android:layout_marginTop="@dimen/xa10"
                 android:gravity="center"
-                android:textColor="@color/title_1"
+                android:textColor="@color/white_background"
                 android:textSize="@dimen/xa35"
                 app:layout_constraintTop_toBottomOf="@+id/fl_time_rate" />
 
