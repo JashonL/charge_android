@@ -333,6 +333,7 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
         initResource();
         setJPushAlias();
         freshData();
+        initStatusBar();
         //开启定时刷新
         startFreshTimer();
 

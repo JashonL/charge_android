@@ -17,7 +17,7 @@
             android:layout_marginTop="@dimen/xa59"
             android:gravity="center"
             android:text="@string/m215电桩故障"
-            android:textColor="@color/main_theme_text_color"
+            android:textColor="@color/white_background"
             android:textSize="@dimen/xa30" />
 
     </LinearLayout>

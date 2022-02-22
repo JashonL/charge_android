@@ -67,7 +67,7 @@
         <LinearLayout
             android:id="@+id/linearlayout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/xa146"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/relativeLayout1"
             android:gravity="center"
             android:orientation="horizontal">

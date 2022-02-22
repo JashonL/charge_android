@@ -69,8 +69,6 @@ public abstract class BaseActivity extends AppCompatActivity implements EasyPerm
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //沉浸式状态栏处理
-        initStatusBar();
 //        BarTextColorUtils.StatusBarLightMode(this);
         mContext = this;
         x.view().inject(this);
@@ -80,6 +78,8 @@ public abstract class BaseActivity extends AppCompatActivity implements EasyPerm
         }
         EventBus.getDefault().register(this);
         MyApplication.getInstance().addActivity(new SoftReference<>(this));
+        //沉浸式状态栏处理
+        initStatusBar();
     }
 
 
