@@ -262,16 +262,21 @@
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+
+
+
                         <RelativeLayout
                             android:id="@+id/rl_switch_gun"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="@dimen/xa150"
+                            android:layout_height="@dimen/xa50"
                             android:layout_marginTop="@dimen/xa10"
                             android:background="@drawable/shape_solid_all_stroke_white"
-                            android:minWidth="@dimen/xa150"
                             android:padding="@dimen/xa5"
+                            android:gravity="center"
+                            app:layout_constraintHorizontal_chainStyle="packed"
                             app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintRight_toLeftOf="@+id/tv_status"
                             app:layout_constraintTop_toBottomOf="@+id/rl_chargingSet">
 
                             <TextView
@@ -300,18 +305,21 @@
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/tv_status"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="@dimen/xa50"
                             android:gravity="center"
                             android:singleLine="true"
                             android:text="@string/m117空闲"
+                            android:layout_marginTop="@dimen/xa10"
                             android:textColor="@color/charging_text_color_2"
                             android:textSize="@dimen/size_content_sp_14"
+                            android:textStyle="bold"
                             app:autoSizeMaxTextSize="@dimen/size_content_sp_14"
                             app:autoSizeMinTextSize="@dimen/size_content_sp_8"
                             app:autoSizeTextType="uniform"
-                            app:layout_constraintBottom_toBottomOf="@+id/rl_switch_gun"
+                            app:layout_constraintTop_toBottomOf="@+id/rl_chargingSet"
                             app:layout_constraintLeft_toRightOf="@+id/rl_switch_gun"
-                            app:layout_constraintTop_toTopOf="@+id/rl_switch_gun" />
+                            app:layout_constraintRight_toRightOf="parent"
+                            />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </RelativeLayout>

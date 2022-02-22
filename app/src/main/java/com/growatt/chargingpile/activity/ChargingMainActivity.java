@@ -1,8 +1,5 @@
 package com.growatt.chargingpile.activity;
 
-import static com.growatt.chargingpile.jpush.TagAliasOperatorHelper.ALIAS_ACTION;
-import static com.growatt.chargingpile.jpush.TagAliasOperatorHelper.ALIAS_DATA;
-
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -91,6 +88,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pub.devrel.easypermissions.EasyPermissions;
+
+import static com.growatt.chargingpile.jpush.TagAliasOperatorHelper.ALIAS_ACTION;
+import static com.growatt.chargingpile.jpush.TagAliasOperatorHelper.ALIAS_DATA;
 
 public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapter.OnItemClickListener {
 
@@ -342,7 +342,7 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
     @Override
     public void initStatusBar() {
         //设置共同沉浸式样式
-        mImmersionBar=  ImmersionBar.with(this);
+        mImmersionBar = ImmersionBar.with(this);
         mImmersionBar.reset()
                 .statusBarDarkFont(false, 0.2f)//设置状态栏图片为深色，(如果android 6.0以下就是半透明)
                 .statusBarView(statusBarView)
@@ -815,7 +815,7 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                     }
                     //默认选中第一项
                     if (charginglist.size() > 0) {
-                        HeadRvAddButton(charginglist);
+//                        HeadRvAddButton(charginglist);
                         mAdapter.replaceData(charginglist);
                         if (isfirst) {
                             mAdapter.setNowSelectPosition(currentPos);
@@ -976,7 +976,11 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                     mStatusGroup.removeAllViews();
                     hideAnim();
                     mStatusGroup.addView(chargeUnvailableView);
-                    setChargGunUi(R.drawable.charging_unavailable, getString(R.string.m122不可用), ContextCompat.getColor(ChargingMainActivity.this, R.color.title_3), R.drawable.btn_start_charging, getString(R.string.m122不可用));
+                    setChargGunUi(R.drawable.charging_unavailable,
+                            getString(R.string.m122不可用),
+                            ContextCompat.getColor(ChargingMainActivity.this, R.color.charging_fault),
+                            R.drawable.btn_start_charging,
+                            getString(R.string.m122不可用),R.drawable.shape_avalaible,R.drawable.drop_available);
                     MyUtil.showAllView(llBottomGroup);
                 }
 
@@ -1003,7 +1007,11 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
         if (data == null) {
             hideAnim();
             mStatusGroup.addView(chargeUnvailableView);
-            setChargGunUi(R.drawable.charging_unavailable, getString(R.string.m122不可用), ContextCompat.getColor(this, R.color.title_3), R.drawable.btn_start_charging, getString(R.string.m103充电));
+            setChargGunUi(R.drawable.charging_unavailable,
+                    getString(R.string.m122不可用),
+                    ContextCompat.getColor(ChargingMainActivity.this, R.color.charging_fault),
+                    R.drawable.btn_start_charging,
+                    getString(R.string.m122不可用),R.drawable.shape_avalaible,R.drawable.drop_available);
             MyUtil.showAllView(llBottomGroup);
             return;
         }
@@ -1025,7 +1033,11 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                     MyUtil.hideAllView(View.GONE, llReserveView, llReserve);
                 }
                 hideAnim();
-                setChargGunUi(R.drawable.charging_available, getString(R.string.m117空闲), ContextCompat.getColor(this, R.color.title_1), R.drawable.btn_start_charging, getString(R.string.m103充电));
+                setChargGunUi(R.drawable.charge_icon,
+                        getString(R.string.m117空闲),
+                        ContextCompat.getColor(this, R.color.main_text_color),
+                        R.drawable.btn_start_charging,
+                        getString(R.string.m103充电),R.drawable.shape_avalaible,R.drawable.drop_available);
                 MyUtil.showAllView(llBottomGroup);
                 break;
             case GunBean.ACCEPTED:
@@ -1033,7 +1045,13 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
             case GunBean.RESERVED:
                 mStatusGroup.addView(reservationView);
                 hideAnim();
-                setChargGunUi(R.drawable.charging_available, getString(R.string.m339预约), ContextCompat.getColor(this, R.color.charging_text_color_2), R.drawable.btn_stop_charging, getString(R.string.m340取消预约));
+
+                setChargGunUi(R.drawable.charge_icon,
+                        getString(R.string.m339预约),
+                        ContextCompat.getColor(this, R.color.orange),
+                        R.drawable.btn_start_charging,
+                        getString(R.string.m340取消预约),R.drawable.shape_avalaible,R.drawable.drop_available);
+
                 MyUtil.showAllView(llBottomGroup);
                 getReservaNow();
                 break;
@@ -1047,13 +1065,25 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                     MyUtil.hideAllView(View.GONE, llReserveView, llReserve);
                 }
                 hideAnim();
-                setChargGunUi(R.drawable.charging_available, getString(R.string.m119准备中), ContextCompat.getColor(this, R.color.title_1), R.drawable.btn_start_charging, getString(R.string.m103充电));
+
+                setChargGunUi(R.drawable.charge_icon,
+                        getString(R.string.m119准备中),
+                        ContextCompat.getColor(this, R.color.orange),
+                        R.drawable.btn_start_charging,
+                        getString(R.string.m103充电),R.drawable.shape_avalaible,R.drawable.drop_available);
+
                 MyUtil.showAllView(llBottomGroup);
                 break;
 
             case GunBean.CHARGING:
                 transactionId = data.getTransactionId();
-                setChargGunUi(R.drawable.charging_available, getString(R.string.m118充电中), ContextCompat.getColor(this, R.color.title_1), R.drawable.btn_stop_charging, getString(R.string.m108停止充电));
+
+                setChargGunUi(R.drawable.charge_icon,
+                        getString(R.string.m118充电中),
+                        ContextCompat.getColor(this, R.color.stroke_greed),
+                        R.drawable.btn_start_charging,
+                        getString(R.string.m108停止充电),R.drawable.shape_charging,R.drawable.drop_charging);
+
                 MyUtil.showAllView(llBottomGroup);
                 startAnim();
                 String presetType = data.getcKey();
@@ -1075,7 +1105,7 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                             mStatusGroup.addView(presetChargingView);
                             String scheme = String.format(getString(R.string.m198预设充电方案) + "-%s", getString(R.string.m200金额));
                             setPresetChargingUi(scheme, moneyUnit + data.getcValue(), money, getString(R.string.m192消费金额),
-                                    R.drawable.charging_ele, energy, getString(R.string.m189已充电量), R.drawable.charging_time, sTimeCharging, getString(R.string.m191已充时长),
+                                    R.drawable.preset_energy, energy, getString(R.string.m189已充电量), R.drawable.preset_time, sTimeCharging, getString(R.string.m191已充时长),
                                     Double.parseDouble(data.getcValue()), data.getCost(),
                                     String.valueOf(data.getRate()), data.getCurrent() + "A", data.getVoltage() + "V");
                             break;
@@ -1084,7 +1114,7 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                             mStatusGroup.addView(presetChargingView);
                             String scheme1 = String.format(getString(R.string.m198预设充电方案) + "-%s", getString(R.string.m201电量));
                             setPresetChargingUi(scheme1, data.getcValue() + "kWh", energy, getString(R.string.m189已充电量),
-                                    R.drawable.charging_money, money, getString(R.string.m192消费金额), R.drawable.charging_time, sTimeCharging, getString(R.string.m191已充时长),
+                                    R.drawable.preset_money, money, getString(R.string.m192消费金额), R.drawable.preset_time, sTimeCharging, getString(R.string.m191已充时长),
                                     Double.parseDouble(data.getcValue()), data.getEnergy(),
                                     String.valueOf(data.getRate()), data.getCurrent() + "A", data.getVoltage() + "V");
                             break;
@@ -1097,7 +1127,7 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                             int minPreset = (int) (presetTime % 60);
                             String sTimePreset = hourPreset + "h" + minPreset + "min";
                             setPresetChargingUi(scheme2, sTimePreset, sTimeCharging, getString(R.string.m191已充时长),
-                                    R.drawable.charging_money, money, getString(R.string.m192消费金额), R.drawable.charging_ele, energy, getString(R.string.m189已充电量),
+                                    R.drawable.preset_money, money, getString(R.string.m192消费金额), R.drawable.preset_energy, energy, getString(R.string.m189已充电量),
                                     Double.parseDouble(data.getcValue()), data.getCtime(),
                                     String.valueOf(data.getRate()), data.getCurrent() + "A", data.getVoltage() + "V");
                             break;
@@ -1110,14 +1140,27 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                 hideAnim();
                 mStatusGroup.addView(chargeSuspendeevView);
                 mTvContent.setText(R.string.m293车拒绝充电提示);
-                setChargGunUi(R.drawable.charging_unavailable, getString(R.string.m133车拒绝充电), ContextCompat.getColor(this, R.color.title_1), R.drawable.btn_start_charging, getString(R.string.m103充电));
+
+
+
+                setChargGunUi(R.drawable.charge_icon,
+                        getString(R.string.m133车拒绝充电),
+                        ContextCompat.getColor(this, R.color.orange),
+                        R.drawable.btn_start_charging,
+                        getString(R.string.m103充电),R.drawable.shape_avalaible,R.drawable.drop_available);
+
                 MyUtil.showAllView(llBottomGroup);
                 break;
             case GunBean.SUSPENDEDEVSE:
                 hideAnim();
                 mTvContent.setText(R.string.m294桩拒绝充电提示);
                 mStatusGroup.addView(chargeSuspendeevView);
-                setChargGunUi(R.drawable.charging_unavailable, getString(R.string.m292桩拒绝充电), ContextCompat.getColor(this, R.color.title_1), R.drawable.btn_start_charging, getString(R.string.m103充电));
+
+                setChargGunUi(R.drawable.charge_icon,
+                        getString(R.string.m292桩拒绝充电),
+                        ContextCompat.getColor(this, R.color.orange),
+                        R.drawable.btn_start_charging,
+                        getString(R.string.m103充电),R.drawable.shape_avalaible,R.drawable.drop_available);
                 MyUtil.showAllView(llBottomGroup);
                 break;
 
@@ -1138,19 +1181,34 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                 tvFinishMoney.setText(cost);
                 stopAnim();
                 MyUtil.showAllView(llBottomGroup);
-                setChargGunUi(R.drawable.charging_available, getString(R.string.m120充电结束), ContextCompat.getColor(this, R.color.title_1), R.drawable.btn_stop_charging, getString(R.string.m108停止充电));
+
+                setChargGunUi(R.drawable.charge_icon,
+                        getString(R.string.m120充电结束),
+                        ContextCompat.getColor(this, R.color.orange),
+                        R.drawable.btn_start_charging,
+                        getString(R.string.m108停止充电),R.drawable.shape_avalaible,R.drawable.drop_available);
                 break;
 
             case GunBean.EXPIRY:
                 hideAnim();
                 mStatusGroup.addView(chargeExpiryView);
-                setChargGunUi(R.drawable.charging_available, getString(R.string.m118充电中), ContextCompat.getColor(this, R.color.title_1), R.drawable.btn_start_charging, getString(R.string.m103充电));
+
+                setChargGunUi(R.drawable.charge_icon,
+                        getString(R.string.m118充电中),
+                        ContextCompat.getColor(this, R.color.stroke_greed),
+                        R.drawable.btn_start_charging,
+                        getString(R.string.m103充电),R.drawable.shape_charging,R.drawable.drop_charging);
                 MyUtil.hideAllView(View.GONE, llBottomGroup);
                 break;
             case GunBean.FAULTED:
                 hideAnim();
                 mStatusGroup.addView(chargeFaultedView);
-                setChargGunUi(R.drawable.charging_available, getString(R.string.m121故障), ContextCompat.getColor(this, R.color.charging_fault), R.drawable.btn_start_charging, getString(R.string.m103充电));
+
+                setChargGunUi(R.drawable.charge_icon,
+                        getString(R.string.m121故障),
+                        ContextCompat.getColor(this, R.color.orange),
+                        R.drawable.btn_start_charging,
+                        getString(R.string.m103充电),R.drawable.shape_avalaible,R.drawable.drop_available);
                 MyUtil.showAllView(llBottomGroup);
                 break;
 
@@ -1158,20 +1216,33 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                 hideAnim();
                 mTvContent.setText(R.string.m216桩体状态为不可用);
                 mStatusGroup.addView(chargeUnvailableView);
-                setChargGunUi(R.drawable.charging_unavailable, getString(R.string.m122不可用), ContextCompat.getColor(this, R.color.charging_fault), R.drawable.btn_start_charging, getString(R.string.m103充电));
+                setChargGunUi(R.drawable.charge_icon,
+                        getString(R.string.m122不可用),
+                        ContextCompat.getColor(this, R.color.orange),
+                        R.drawable.btn_start_charging,
+                        getString(R.string.m103充电),R.drawable.shape_avalaible,R.drawable.drop_available);
                 MyUtil.showAllView(llBottomGroup);
                 break;
             case GunBean.WORK:
                 hideAnim();
                 mStatusGroup.addView(chargeWorkedView);
-                setChargGunUi(R.drawable.charging_available, getString(R.string.m126已经工作过), ContextCompat.getColor(this, R.color.title_1), R.drawable.btn_start_charging, getString(R.string.m103充电));
+
+                setChargGunUi(R.drawable.charge_icon,
+                        getString(R.string.m126已经工作过),
+                        ContextCompat.getColor(this, R.color.orange),
+                        R.drawable.btn_start_charging,
+                        getString(R.string.m103充电),R.drawable.shape_avalaible,R.drawable.drop_available);
                 MyUtil.hideAllView(View.GONE, llBottomGroup);
                 break;
 
             default:
                 hideAnim();
                 mStatusGroup.addView(chargeUnvailableView);
-                setChargGunUi(R.drawable.charging_unavailable, getString(R.string.m122不可用), ContextCompat.getColor(this, R.color.charging_fault), R.drawable.btn_start_charging, getString(R.string.m103充电));
+                setChargGunUi(R.drawable.charge_icon,
+                        getString(R.string.m122不可用),
+                        ContextCompat.getColor(this, R.color.orange),
+                        R.drawable.btn_start_charging,
+                        getString(R.string.m103充电),R.drawable.shape_avalaible,R.drawable.drop_available);
                 MyUtil.showAllView(llBottomGroup);
                 break;
         }
@@ -2589,13 +2660,23 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
     /**
      * 状态改变时设置充电枪相关Ui
      */
-    private void setChargGunUi(int resStatus, String textStatus, int statusColor, int resOnOff, String textOnOff) {
+    private void setChargGunUi(int resStatus, String textStatus, int statusColor, int resOnOff, String textOnOff,int gun_bg,int drop) {
         ivChargingIcon.setImageResource(resStatus);
         tvStatus.setText(textStatus);
         tvStatus.setTextColor(statusColor);
+
+        tvSwitchGun.setTextColor(statusColor);
+        rlSwitchGun.setBackgroundResource(gun_bg);
+        ivDrop.setImageResource(drop);
+
+
         ivChargingStatus.setImageResource(resOnOff);
         tvChargingStatus.setText(textOnOff);
     }
+
+
+
+
 
     /**
      * 开始旋转动画
@@ -2739,4 +2820,8 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
         }
     }
 
+    @OnClick(R.id.iv_add)
+    public void onViewClicked() {
+        addChargingPile();
+    }
 }
