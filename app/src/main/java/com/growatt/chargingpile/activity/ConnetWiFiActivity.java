@@ -1,13 +1,13 @@
 package com.growatt.chargingpile.activity;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Paint;
+import android.graphics.drawable.ColorDrawable;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.DhcpInfo;
@@ -15,20 +15,26 @@ import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.FragmentActivity;
-
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
+
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.DialogFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.growatt.chargingpile.BaseActivity;
 import com.growatt.chargingpile.R;
@@ -55,30 +61,35 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import pub.devrel.easypermissions.EasyPermissions;
 
-public class ConnetWiFiActivity extends BaseActivity {
+public class ConnetWiFiActivity extends BaseActivity implements Toolbar.OnMenuItemClickListener{
 
-    @BindView(R.id.tvTitle)
-    TextView tvTitle;
-    @BindView(R.id.ivLeft)
-    ImageView ivLeft;
+
+    @BindView(R.id.status_bar_view)
+    View statusBarView;
+    @BindView(R.id.tv_title)
+    AppCompatTextView tvTitle;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     @BindView(R.id.headerView)
     LinearLayout headerView;
-    @BindView(R.id.tv_wifi_name)
-    TextView tvWifiName;
-    @BindView(R.id.get_wifi)
-    TextView tvGetWifi;
-    @BindView(R.id.ivRight)
-    ImageView ivRight;
-    @BindView(R.id.relativeLayout1)
-    RelativeLayout relativeLayout1;
     @BindView(R.id.tv_id)
     TextView tvId;
     @BindView(R.id.tv_current_charging)
     TextView tvCurrentCharging;
+    @BindView(R.id.iv_apicon)
+    ImageView ivApicon;
+    @BindView(R.id.tv_aptext)
+    TextView tvAptext;
     @BindView(R.id.ll_switch_ap)
     LinearLayout llSwitchAp;
+    @BindView(R.id.cl_switch_ap)
+    ConstraintLayout clSwitchAp;
     @BindView(R.id.tv_wifi_prompt)
     TextView tvWifiPrompt;
+    @BindView(R.id.tv_wifi_name)
+    TextView tvWifiName;
+    @BindView(R.id.get_wifi)
+    TextView getWifi;
     @BindView(R.id.ll_refresh)
     LinearLayout llRefresh;
     @BindView(R.id.linearlayout2)
@@ -89,10 +100,8 @@ public class ConnetWiFiActivity extends BaseActivity {
     LinearLayout llSetwifi;
     @BindView(R.id.btnOk)
     Button btnOk;
-    @BindView(R.id.iv_apicon)
-    ImageView ivApicon;
-    @BindView(R.id.tv_aptext)
-    TextView tvAptext;
+
+
     //wifi名称
     private String currentSSID;
     public static final int SEARCH_DEVICE_START = 1;
@@ -137,7 +146,7 @@ public class ConnetWiFiActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connet_wi_fi);
-        bind=ButterKnife.bind(this);
+        bind = ButterKnife.bind(this);
 //        mDeviceList = new ArrayList<>();
         initIntent();
         initViews();
@@ -152,7 +161,7 @@ public class ConnetWiFiActivity extends BaseActivity {
 
     private void initIntent() {
         devId = getIntent().getStringExtra("sn");
-        online=getIntent().getIntExtra("online",0);
+        online = getIntent().getIntExtra("online", 0);
     }
 
 
@@ -171,19 +180,23 @@ public class ConnetWiFiActivity extends BaseActivity {
     }
 
     private void initViews() {
-        ivLeft.setImageResource(R.drawable.back);
+        initToobar(toolbar);
         tvTitle.setText(R.string.m247热点连接);
-        tvTitle.setTextColor(ContextCompat.getColor(this, R.color.title_1));
-        ivRight.setImageResource(R.drawable.info);
-        tvGetWifi.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
-        tvGetWifi.getPaint().setAntiAlias(true);//抗锯齿
+        tvTitle.setTextColor(ContextCompat.getColor(this, R.color.main_theme_text_color));
+
+
+        toolbar.inflateMenu(R.menu.menu);
+        toolbar.setOnMenuItemClickListener(this);
+
+        etWifiPassword.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
+        etWifiPassword.getPaint().setAntiAlias(true);//抗锯齿
         if (!TextUtils.isEmpty(devId)) {
             tvId.setText(devId);
         } else tvId.setText(R.string.m106选择充电桩);
 
-        if (online==1){//1是离线
+        if (online == 1) {//1是离线
             llSwitchAp.setVisibility(View.GONE);
-        }else {
+        } else {
             llSwitchAp.setVisibility(View.VISIBLE);
         }
     }
@@ -196,7 +209,7 @@ public class ConnetWiFiActivity extends BaseActivity {
                     if (EasyPermissions.hasPermissions(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
                         gpsStatus();
                     } else {
-                        EasyPermissions.requestPermissions(this,String.format("%s:%s",getString(R.string.m权限获取某权限说明),getString(R.string.m位置)), PermissionCodeUtil.PERMISSION_LOCATION_CODE, Manifest.permission.ACCESS_FINE_LOCATION);
+                        EasyPermissions.requestPermissions(this, String.format("%s:%s", getString(R.string.m权限获取某权限说明), getString(R.string.m位置)), PermissionCodeUtil.PERMISSION_LOCATION_CODE, Manifest.permission.ACCESS_FINE_LOCATION);
                     }
                 } else {
                     currentSSID = MyUtil.getWIFISSID(this);
@@ -245,7 +258,7 @@ public class ConnetWiFiActivity extends BaseActivity {
                     Intent intent = new Intent();
                     intent.setAction(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                     startActivityForResult(intent, GlobalConstant.ACTION_LOCATION_CODE);
-                    dialogFragment=null;
+                    dialogFragment = null;
                 }
             }, new View.OnClickListener() {
                 @Override
@@ -307,15 +320,13 @@ public class ConnetWiFiActivity extends BaseActivity {
         startActivity(intent);
     }
 
-    @OnClick({R.id.ll_setwifi, R.id.ivLeft, R.id.btnOk, R.id.ll_refresh, R.id.ivRight, R.id.ll_switch_ap})
+    @OnClick({R.id.ll_setwifi, R.id.btnOk, R.id.ll_refresh, R.id.ll_switch_ap})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_setwifi:
                 showJumpWifiSet();
                 break;
-            case R.id.ivLeft:
-                finish();
-                break;
+
             case R.id.btnOk:
                 second = 60;
                 isCancel = false;
@@ -324,11 +335,7 @@ public class ConnetWiFiActivity extends BaseActivity {
             case R.id.ll_refresh:
                 checkWifiNetworkStatus();
                 break;
-            case R.id.ivRight:
-                Intent intent = new Intent(this, WifiSetGuideActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                jumpTo(intent, false);
-                break;
+
             case R.id.ll_switch_ap:
                 apMode();
                 break;
@@ -357,12 +364,12 @@ public class ConnetWiFiActivity extends BaseActivity {
                     if (code == 0) {
                         llSwitchAp.setBackgroundResource(R.drawable.selector_circle_btn_green_gradient);
                         ivApicon.setImageResource(R.drawable.ap_off);
-                        tvAptext.setTextColor(ContextCompat.getColor(ConnetWiFiActivity.this,R.color.white_background));
+                        tvAptext.setTextColor(ContextCompat.getColor(ConnetWiFiActivity.this, R.color.white_background));
                         toast(R.string.m307切换成功);
                     } else {
                         llSwitchAp.setBackgroundResource(R.drawable.shape_solid_white_stroke_green);
                         ivApicon.setImageResource(R.drawable.ap_on);
-                        tvAptext.setTextColor(ContextCompat.getColor(ConnetWiFiActivity.this,R.color.maincolor_1));
+                        tvAptext.setTextColor(ContextCompat.getColor(ConnetWiFiActivity.this, R.color.maincolor_1));
                         toast(R.string.m308切换失败);
                     }
 
@@ -461,4 +468,13 @@ public class ConnetWiFiActivity extends BaseActivity {
         dialog.show();
     }
 
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        if (item.getItemId() == R.id.right_action) {
+            Intent intent = new Intent(this, WifiSetGuideActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            jumpTo(intent, false);
+        }
+        return true;
+    }
 }

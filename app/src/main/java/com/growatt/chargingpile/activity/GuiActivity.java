@@ -24,7 +24,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.jpush.android.api.JPushInterface;
 
 public class GuiActivity extends BaseActivity {
 
@@ -36,7 +35,6 @@ public class GuiActivity extends BaseActivity {
         requestWindowTitleByActivity();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gui);
-        JPushInterface.init(getApplicationContext());
         String chargeId=getIntent().getStringExtra("chargeId");
         int isFrist = SharedPreferencesUnit.getInstance(MyApplication.context).getInt("num");
         if (isFrist ==0){

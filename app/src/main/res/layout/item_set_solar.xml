@@ -20,7 +20,7 @@
             android:maxWidth="@dimen/xa400"
             android:gravity="center_vertical"
             android:text="@string/m149电桩名称"
-            android:textColor="@color/title_1"
+            android:textColor="@color/main_theme_text_color"
             android:textSize="@dimen/xa26"
             android:layout_marginStart="@dimen/xa30" />
 
@@ -32,7 +32,7 @@
             android:layout_toLeftOf="@+id/iv_more1"
             android:layout_toRightOf="@+id/tv_key"
             android:gravity="center_vertical|end"
-            android:textColor="@color/title_bg_white"
+            android:textColor="@color/main_theme_text_color"
             android:textSize="@dimen/xa26"
             android:lines="2"
             android:ellipsize="end"

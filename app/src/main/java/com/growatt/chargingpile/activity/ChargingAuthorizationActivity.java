@@ -2,13 +2,19 @@ package com.growatt.chargingpile.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.fragment.app.FragmentManager;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
+
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.gson.Gson;
 import com.growatt.chargingpile.BaseActivity;
@@ -37,16 +43,24 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 
-public class ChargingAuthorizationActivity extends BaseActivity {
+public class ChargingAuthorizationActivity extends BaseActivity implements Toolbar.OnMenuItemClickListener {
 
-    @BindView(R.id.headerView)
-    View headerView;
 
     /*授权列表*/
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
     @BindView(R.id.swipe_refresh)
     SwipeRefreshLayout mSwipeRefresh;
+    @BindView(R.id.status_bar_view)
+    View statusBarView;
+    @BindView(R.id.tv_title)
+    AppCompatTextView tvTitle;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.headerView)
+    LinearLayout headerView;
+
+
     private List<ChargingUserBean.DataBean> mUserList = new ArrayList<>();
     private ChargingUserAdapter mChargingUserAdapter;
     private String chargingId;
@@ -91,7 +105,7 @@ public class ChargingAuthorizationActivity extends BaseActivity {
         Mydialog.Show(this);
         Map<String, Object> jsonMap = new LinkedHashMap<String, Object>();
         jsonMap.put("sn", chargingId);
-        jsonMap.put("userId",SmartHomeUtil.getUserName());
+        jsonMap.put("userId", SmartHomeUtil.getUserName());
         jsonMap.put("page", 1);
         jsonMap.put("psize", 30);
         jsonMap.put("lan", getLanguage());//测试id
@@ -133,26 +147,31 @@ public class ChargingAuthorizationActivity extends BaseActivity {
      * 初始化头部
      */
     private void initHeaderView() {
-        setHeaderImage(headerView, R.drawable.back, Position.LEFT, new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-        setHeaderTitle(headerView, getResources().getString(R.string.m142授权管理), R.color.title_1, false);
-        setHeaderImage(headerView, R.drawable.add_authorization_user, Position.RIGHT, new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gotoGrant();
-            }
-        });
+
+        initToobar(toolbar);
+        tvTitle.setText(R.string.m142授权管理);
+        tvTitle.setTextColor(ContextCompat.getColor(this,R.color.main_theme_text_color));
+
+        toolbar.inflateMenu(R.menu.menu_authorization);
+        toolbar.setOnMenuItemClickListener(this);
+
     }
+
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        if (item.getItemId() == R.id.right_action) {
+            gotoGrant();
+        }
+        return true;
+    }
+
 
 
     private void gotoGrant() {
         Intent intent = new Intent(this, AddAuthorizationActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        intent.putExtra("sn",chargingId);
+        intent.putExtra("sn", chargingId);
         startActivity(intent);
     }
 

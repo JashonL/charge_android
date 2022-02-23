@@ -21,48 +21,48 @@
 
 
         <RelativeLayout
-            android:id="@+id/relativeLayout1"
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <TextView
+            android:id="@+id/tvTitle"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
+            android:layout_height="@dimen/xa70"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/ivRight"
+            android:layout_toLeftOf="@+id/ivRight"
+            android:layout_toEndOf="@+id/ivLeft"
+            android:layout_toRightOf="@+id/ivLeft"
+            android:gravity="center"
+            android:text="@string/m102充电桩"
+            android:textColor="@color/headerView"
+            android:textSize="@dimen/xa37" />
 
-            <TextView
-                android:id="@+id/tvTitle"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/xa70"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/ivRight"
-                android:layout_toLeftOf="@+id/ivRight"
-                android:layout_toEndOf="@+id/ivLeft"
-                android:layout_toRightOf="@+id/ivLeft"
-                android:gravity="center"
-                android:text="@string/m102充电桩"
-                android:textColor="@color/headerView"
-                android:textSize="@dimen/xa37" />
-
-            <ImageView
-                android:id="@+id/ivLeft"
-                android:layout_width="@dimen/xa105"
-                android:layout_height="match_parent"
-                android:layout_alignParentLeft="true"
-                android:layout_centerInParent="true"
-                android:background="@drawable/selector_transparent_background"
-                android:paddingLeft="@dimen/xa18"
-                android:paddingTop="@dimen/xa35"
-                android:paddingRight="@dimen/xa18"
-                android:paddingBottom="@dimen/xa35" />
+        <ImageView
+            android:id="@+id/ivLeft"
+            android:layout_width="@dimen/xa105"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:background="@drawable/selector_transparent_background"
+            android:paddingLeft="@dimen/xa18"
+            android:paddingTop="@dimen/xa35"
+            android:paddingRight="@dimen/xa18"
+            android:paddingBottom="@dimen/xa35" />
 
 
-            <ImageView
-                android:id="@+id/ivRight"
-                android:layout_width="@dimen/xa105"
-                android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:gravity="center"
-                android:paddingTop="@dimen/xa32"
-                android:paddingRight="@dimen/xa11"
-                android:paddingBottom="@dimen/xa32" />
-        </RelativeLayout>
+        <ImageView
+            android:id="@+id/ivRight"
+            android:layout_width="@dimen/xa105"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:paddingTop="@dimen/xa32"
+            android:paddingRight="@dimen/xa11"
+            android:paddingBottom="@dimen/xa32" />
+    </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/linearlayout"
@@ -119,7 +119,7 @@
                     android:layout_height="@dimen/xa44"
                     android:layout_marginLeft="@dimen/xa28"
                     android:layout_marginTop="@dimen/xa28"
-                    android:background="@drawable/shape_button_gradient_normal"
+                    android:background="@drawable/selector_orange"
                     android:gravity="center"
                     android:visibility="visible"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -153,7 +153,7 @@
                     android:layout_marginTop="@dimen/xa28"
                     android:layout_marginEnd="@dimen/xa28"
                     android:layout_marginRight="@dimen/xa28"
-                    android:background="@drawable/shape_button_gradient_normal"
+                    android:background="@drawable/selector_orange"
                     android:gravity="center"
                     android:visibility="visible"
                     app:layout_constraintRight_toRightOf="parent"

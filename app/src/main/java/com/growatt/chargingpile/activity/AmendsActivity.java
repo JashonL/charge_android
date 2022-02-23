@@ -7,9 +7,14 @@ import android.text.InputType;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 
 import com.growatt.chargingpile.BaseActivity;
 import com.growatt.chargingpile.R;
@@ -36,20 +41,30 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 public class AmendsActivity extends BaseActivity {
+
+
+    @BindView(R.id.status_bar_view)
+    View statusBarView;
+    @BindView(R.id.tv_title)
+    AppCompatTextView tvTitle;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     @BindView(R.id.headerView)
-    View headerView;
+    LinearLayout headerView;
     @BindView(R.id.tvTip)
     TextView tvTip;
     @BindView(R.id.et_content)
     EditText etContent;
-    @BindView(R.id.et_user_pwd)
-    EditText etUserPwd;
     @BindView(R.id.ll_content)
     LinearLayout llContent;
-    @BindView(R.id.ll_content_date)
-    LinearLayout llContentDate;
     @BindView(R.id.tv_content_date)
     TextView tvContentDate;
+    @BindView(R.id.ll_content_date)
+    LinearLayout llContentDate;
+    @BindView(R.id.et_user_pwd)
+    EditText etUserPwd;
+    @BindView(R.id.btnOk)
+    Button btnOk;
 
     private String type;
     private String PhoneNum;
@@ -81,12 +96,15 @@ public class AmendsActivity extends BaseActivity {
 
 
     private void initHeaderView() {
-        setHeaderImage(headerView, R.drawable.back, Position.LEFT, v -> finish());
-        setHeaderTitle(headerView, getString(R.string.m57修改密码), R.color.title_1, false);
+
+        initToobar(toolbar);
+        tvTitle.setTextColor(ContextCompat.getColor(this,R.color.main_theme_text_color));
+        tvTitle.setText(R.string.m57修改密码);
+
     }
 
 
-    @OnClick({R.id.btnOk,R.id.ll_content_date})
+    @OnClick({R.id.btnOk, R.id.ll_content_date})
     public void onClicklistener(View view) {
         switch (view.getId()) {
             case R.id.btnOk:
@@ -116,7 +134,7 @@ public class AmendsActivity extends BaseActivity {
         installEmail = bundle.getString("installEmail");
         installPhone = bundle.getString("installPhone");
         installAddress = bundle.getString("installAddress");
-        installDate=bundle.getString("installerDate");
+        installDate = bundle.getString("installerDate");
         type = bundle.getString("type");
     }
 
@@ -153,20 +171,20 @@ public class AmendsActivity extends BaseActivity {
             if (!TextUtils.isEmpty(installPhone)) {
                 etContent.setText(installPhone);
             }
-        } else if ("5".equals(type)){
+        } else if ("5".equals(type)) {
             tvTip.setText(R.string.m安装商地址修改);
             setHeaderTitle(headerView, getString(R.string.m安装商地址修改));
             etContent.setHint(R.string.m请输入安装商地址);
             if (!TextUtils.isEmpty(installAddress)) {
                 etContent.setText(installAddress);
             }
-        }else if ("6".equals(type)){
+        } else if ("6".equals(type)) {
             tvTip.setText(R.string.m安装日期修改);
             setHeaderTitle(headerView, getString(R.string.m安装日期修改));
             tvContentDate.setHint(R.string.m请输入安装日期);
             if (!TextUtils.isEmpty(installDate)) {
                 tvContentDate.setText(installDate);
-                SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
                 Date date = simpleDateFormat.parse(installDate);
                 calendar.setTime(date);
 
@@ -185,15 +203,15 @@ public class AmendsActivity extends BaseActivity {
      * 修改手机号或者邮箱
      */
     public void valPhoneOrEmail() {
-        String date=tvContentDate.getText().toString().trim();
+        String date = tvContentDate.getText().toString().trim();
         String upContent = etContent.getText().toString().trim();
         String password = etUserPwd.getText().toString().trim();
-        if ("6".equals(type)){
-            if (TextUtils.isEmpty(date)){
+        if ("6".equals(type)) {
+            if (TextUtils.isEmpty(date)) {
                 toast(R.string.m140不能为空);
                 return;
             }
-        }else {
+        } else {
 
             if (TextUtils.isEmpty(upContent)) {
                 toast(R.string.m140不能为空);
@@ -228,25 +246,25 @@ public class AmendsActivity extends BaseActivity {
                 object.put("installPhone", installPhone);
                 object.put("installEmail", upContent);
                 object.put("installer", installer);
-                object.put("installDate",installDate);
+                object.put("installDate", installDate);
             } else if ("4".equals(type)) {
                 object.put("installAddress", installAddress);
                 object.put("installPhone", upContent);
                 object.put("installEmail", installEmail);
                 object.put("installer", installer);
-                object.put("installDate",installDate);
-            } else if ("5".equals(type)){
+                object.put("installDate", installDate);
+            } else if ("5".equals(type)) {
                 object.put("installAddress", upContent);
                 object.put("installPhone", installPhone);
                 object.put("installEmail", installEmail);
                 object.put("installer", installer);
-                object.put("installDate",installDate);
-            }else if ("6".equals(type)){
+                object.put("installDate", installDate);
+            } else if ("6".equals(type)) {
                 object.put("installAddress", installAddress);
                 object.put("installPhone", installPhone);
                 object.put("installEmail", installEmail);
                 object.put("installer", installer);
-                object.put("installDate",upContent);
+                object.put("installDate", upContent);
             }
             object.put("lan", getLanguage());
         } catch (Exception e) {
@@ -270,7 +288,7 @@ public class AmendsActivity extends BaseActivity {
                             Intent intent = new Intent();
                             intent.putExtra("type", type);
                             intent.putExtra("result", upContent);
-                            intent.putExtra("date",date);
+                            intent.putExtra("date", date);
                             setResult(RESULT_OK, intent);
                             finish();
                         });

@@ -52,8 +52,6 @@ import com.growatt.chargingpile.bean.NoConfigBean;
 import com.growatt.chargingpile.bean.PileSetBean;
 import com.growatt.chargingpile.bean.ReservationBean;
 import com.growatt.chargingpile.connutil.PostUtil;
-import com.growatt.chargingpile.jpush.PushUtils;
-import com.growatt.chargingpile.jpush.TagAliasOperatorHelper;
 import com.growatt.chargingpile.util.CircleDialogUtils;
 import com.growatt.chargingpile.util.Cons;
 import com.growatt.chargingpile.util.Constant;
@@ -93,8 +91,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pub.devrel.easypermissions.EasyPermissions;
 
-import static com.growatt.chargingpile.jpush.TagAliasOperatorHelper.ALIAS_ACTION;
-import static com.growatt.chargingpile.jpush.TagAliasOperatorHelper.ALIAS_DATA;
 
 
 public class ChargingPileActivity extends BaseActivity implements BaseQuickAdapter.OnItemClickListener {
@@ -406,10 +402,7 @@ public class ChargingPileActivity extends BaseActivity implements BaseQuickAdapt
 
 
     private void setJPushAlias() {
-        String registrationId = PushUtils.getRegistrationId(this);
-        MMKV.defaultMMKV().putString(ALIAS_DATA, Cons.userBean.getAccountName());
-        MMKV.defaultMMKV().putInt(ALIAS_ACTION, 1);
-        PushUtils.setAlias(this,Cons.userBean.getAccountName(),PushUtils.sequence++);
+
     }
 
 

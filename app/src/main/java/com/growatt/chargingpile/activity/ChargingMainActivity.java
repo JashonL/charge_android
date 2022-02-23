@@ -30,6 +30,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
 import com.growatt.chargingpile.BaseActivity;
@@ -50,7 +52,6 @@ import com.growatt.chargingpile.bean.NoConfigBean;
 import com.growatt.chargingpile.bean.PileSetBean;
 import com.growatt.chargingpile.bean.ReservationBean;
 import com.growatt.chargingpile.connutil.PostUtil;
-import com.growatt.chargingpile.jpush.PushUtils;
 import com.growatt.chargingpile.util.CircleDialogUtils;
 import com.growatt.chargingpile.util.Cons;
 import com.growatt.chargingpile.util.Constant;
@@ -89,8 +90,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pub.devrel.easypermissions.EasyPermissions;
 
-import static com.growatt.chargingpile.jpush.TagAliasOperatorHelper.ALIAS_ACTION;
-import static com.growatt.chargingpile.jpush.TagAliasOperatorHelper.ALIAS_DATA;
 
 public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapter.OnItemClickListener {
 
@@ -331,7 +330,6 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
         initPullView();
         initStatusView();
         initResource();
-        setJPushAlias();
         freshData();
         initStatusBar();
         //开启定时刷新
@@ -450,12 +448,6 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
     }
 
 
-    private void setJPushAlias() {
-        String registrationId = PushUtils.getRegistrationId(this);
-        MMKV.defaultMMKV().putString(ALIAS_DATA, Cons.userBean.getAccountName());
-        MMKV.defaultMMKV().putInt(ALIAS_ACTION, 1);
-        PushUtils.setAlias(this, Cons.userBean.getAccountName(), PushUtils.sequence++);
-    }
 
 
     private void initPermission() {
@@ -466,7 +458,7 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
 
 
     private void initPullView() {
-        srlPull.setColorSchemeColors(ContextCompat.getColor(this, R.color.maincolor_1));
+        srlPull.setColorSchemeColors(ContextCompat.getColor(this, R.color.white_background));
         srlPull.setOnRefreshListener(this::freshData);
     }
 
@@ -575,7 +567,7 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
 
         cbEveryday.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                tvEveryDay.setTextColor(ContextCompat.getColor(this, R.color.main_text_color));
+                tvEveryDay.setTextColor(ContextCompat.getColor(this, R.color.main_theme_text_color));
             } else {
                 tvEveryDay.setTextColor(ContextCompat.getColor(this, R.color.title_2));
             }
@@ -1032,10 +1024,10 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                     mStatusGroup.addView(availableView);
                     MyUtil.hideAllView(View.GONE, llReserveView, llReserve);
                 }
-                hideAnim();
+                startWaitAnim();
                 setChargGunUi(R.drawable.charge_icon,
                         getString(R.string.m117空闲),
-                        ContextCompat.getColor(this, R.color.main_text_color),
+                        ContextCompat.getColor(this, R.color.orange),
                         R.drawable.btn_start_charging,
                         getString(R.string.m103充电),R.drawable.shape_avalaible,R.drawable.drop_available);
                 MyUtil.showAllView(llBottomGroup);
@@ -1044,7 +1036,7 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
             case GunBean.RESERVENOW:
             case GunBean.RESERVED:
                 mStatusGroup.addView(reservationView);
-                hideAnim();
+                startWaitAnim();
 
                 setChargGunUi(R.drawable.charge_icon,
                         getString(R.string.m339预约),
@@ -1064,7 +1056,7 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                 } else {
                     MyUtil.hideAllView(View.GONE, llReserveView, llReserve);
                 }
-                hideAnim();
+                startWaitAnim();
 
                 setChargGunUi(R.drawable.charge_icon,
                         getString(R.string.m119准备中),
@@ -1085,7 +1077,7 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                         getString(R.string.m108停止充电),R.drawable.shape_charging,R.drawable.drop_charging);
 
                 MyUtil.showAllView(llBottomGroup);
-                startAnim();
+                startChargeAnim();
                 String presetType = data.getcKey();
                 if ("0".equals(presetType) || TextUtils.isEmpty(presetType)) {
                     mStatusGroup.addView(normalChargingView);
@@ -1137,7 +1129,7 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                 break;
 
             case GunBean.SUSPENDEEV:
-                hideAnim();
+                startWaitAnim();
                 mStatusGroup.addView(chargeSuspendeevView);
                 mTvContent.setText(R.string.m293车拒绝充电提示);
 
@@ -1152,7 +1144,7 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                 MyUtil.showAllView(llBottomGroup);
                 break;
             case GunBean.SUSPENDEDEVSE:
-                hideAnim();
+                startWaitAnim();
                 mTvContent.setText(R.string.m294桩拒绝充电提示);
                 mStatusGroup.addView(chargeSuspendeevView);
 
@@ -1179,7 +1171,7 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                     cost = moneyUnit + cost;
                 }
                 tvFinishMoney.setText(cost);
-                stopAnim();
+                startChargeAnim();
                 MyUtil.showAllView(llBottomGroup);
 
                 setChargGunUi(R.drawable.charge_icon,
@@ -1190,7 +1182,7 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                 break;
 
             case GunBean.EXPIRY:
-                hideAnim();
+                startWaitAnim();
                 mStatusGroup.addView(chargeExpiryView);
 
                 setChargGunUi(R.drawable.charge_icon,
@@ -1201,7 +1193,7 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                 MyUtil.hideAllView(View.GONE, llBottomGroup);
                 break;
             case GunBean.FAULTED:
-                hideAnim();
+                startWaitAnim();
                 mStatusGroup.addView(chargeFaultedView);
 
                 setChargGunUi(R.drawable.charge_icon,
@@ -1213,7 +1205,7 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                 break;
 
             case GunBean.UNAVAILABLE:
-                hideAnim();
+                startWaitAnim();
                 mTvContent.setText(R.string.m216桩体状态为不可用);
                 mStatusGroup.addView(chargeUnvailableView);
                 setChargGunUi(R.drawable.charge_icon,
@@ -1224,7 +1216,7 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                 MyUtil.showAllView(llBottomGroup);
                 break;
             case GunBean.WORK:
-                hideAnim();
+                startWaitAnim();
                 mStatusGroup.addView(chargeWorkedView);
 
                 setChargGunUi(R.drawable.charge_icon,
@@ -1236,7 +1228,7 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                 break;
 
             default:
-                hideAnim();
+                startWaitAnim();
                 mStatusGroup.addView(chargeUnvailableView);
                 setChargGunUi(R.drawable.charge_icon,
                         getString(R.string.m122不可用),
@@ -1366,7 +1358,7 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                         tvReserCalValue.setText(cValue);
                         String reserType = getString(R.string.m196预设) + getString(R.string.m200金额);
                         tvReserTypeText.setText(reserType);
-                        ivReserChargedType.setImageResource(R.drawable.charging_money);
+                        ivReserChargedType.setImageResource(R.drawable.preset_money);
                         break;
 
                     case "G_SetEnergy": //电量预约
@@ -1388,7 +1380,7 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                         tvReserCalValue.setText(cValue1);
                         String reserType1 = getString(R.string.m196预设) + getString(R.string.m201电量);
                         tvReserTypeText.setText(reserType1);
-                        ivReserChargedType.setImageResource(R.drawable.charging_record_ele);
+                        ivReserChargedType.setImageResource(R.drawable.preset_energy);
                         break;
 
                     case "G_SetTime": //时间段预约
@@ -1402,7 +1394,7 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                         tvReserType.setText(R.string.m336充电方案);
                         String reserType2 = getString(R.string.m337预计) + getString(R.string.m200金额);
                         tvReserTypeText.setText(reserType2);
-                        ivReserChargedType.setImageResource(R.drawable.charging_money);
+                        ivReserChargedType.setImageResource(R.drawable.preset_money);
                         reservaAdapter.replaceData(reserveNow);
                         double calVaule = 0;
                         String symbol2 = mCurrentReservationBean.getSymbol();
@@ -1427,7 +1419,7 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                         rvTimeReserva.setVisibility(View.GONE);
                         llTimeRate.setVisibility(View.VISIBLE);
                         tvTips.setText(R.string.m338充满自动停止充电);
-                        ivReserChargedType.setImageResource(R.drawable.charging_money);
+                        ivReserChargedType.setImageResource(R.drawable.preset_money);
                         break;
 
                 }
@@ -2535,9 +2527,9 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
         if (solar == 0) {
             mRlSolar.setBackgroundResource(R.drawable.selector_circle_btn_white);
             mIvLimit.setImageResource(R.drawable.limit_power_on);
-            mTvSolar.setTextColor(ContextCompat.getColor(this, R.color.maincolor_1));
+            mTvSolar.setTextColor(ContextCompat.getColor(this, R.color.title_1));
         } else {
-            mRlSolar.setBackgroundResource(R.drawable.selector_circle_btn_green_gradient);
+            mRlSolar.setBackgroundResource(R.drawable.selector_orange);
             mIvLimit.setImageResource(R.drawable.limit_power_off);
             mTvSolar.setTextColor(ContextCompat.getColor(this, R.color.headerView));
         }
@@ -2682,24 +2674,27 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
      * 开始旋转动画
      */
 
-    private void startAnim() {
+    private void startChargeAnim() {
     /*    MyUtil.hideAllView(View.GONE, ivfinishBackground);
         MyUtil.showAllView(ivAnim);
         if (animation == null) {
             animation = AnimationUtils.loadAnimation(this, R.anim.pile_charging);
             ivAnim.startAnimation(animation);
         }*/
+
+        Glide.with(this).asGif().load(R.drawable.charge_charging).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).into(ivGif);
     }
 
     /**
      * 完成充电
      */
-    private void stopAnim() {
+    private void startWaitAnim() {
        /* animation = null;
         MyUtil.hideAllView(View.GONE);
         MyUtil.showAllView(ivfinishBackground);
         ivAnim.clearAnimation();
         ivfinishBackground.setImageResource(R.drawable.charging_finish_anim);*/
+        Glide.with(this).asGif().load(R.drawable.charge_wait).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).into(ivGif);
     }
 
     /**
@@ -2709,6 +2704,11 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
       /*  animation = null;
         ivAnim.clearAnimation();
         MyUtil.hideAllView(View.GONE, ivAnim, ivfinishBackground);*/
+
+
+        MyUtil.hideAllView(View.GONE, ivGif);
+
+
     }
 
 

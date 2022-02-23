@@ -6,7 +6,7 @@
     android:orientation="vertical"
     tools:context="com.growatt.chargingpile.activity.WifiSetActivity">
 
-    <include layout="@layout/header_view_title" />
+    <include layout="@layout/toobar_title" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/srl_pull"

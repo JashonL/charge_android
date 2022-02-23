@@ -29,7 +29,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import cn.jpush.android.api.JPushInterface;
 
 public class YingliLoginActivity extends BaseActivity {
 
@@ -54,7 +53,6 @@ public class YingliLoginActivity extends BaseActivity {
         setContentView(R.layout.activity_yingli_login);
         bind = ButterKnife.bind(this);
         initUrl();
-        JPushInterface.init(getApplicationContext());
         initUser();
         AutoLogin();
     }

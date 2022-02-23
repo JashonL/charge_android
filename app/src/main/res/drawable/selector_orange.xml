@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item android:state_pressed="true">
+
+        <shape>
+
+            <corners android:radius="360dp" />
+            <gradient
+                android:angle="180"
+                android:endColor="@color/charging_fault"
+                android:startColor="@color/charging_fault"
+                android:type="linear" />
+
+        </shape>
+
+    </item>
+
+
+
+    <item>
+
+        <shape>
+
+            <corners android:radius="360dp" />
+            <gradient
+                android:angle="180"
+                android:endColor="@color/solar_bg"
+                android:startColor="@color/solar_bg"
+                android:type="linear" />
+
+        </shape>
+
+
+    </item>
+</selector>

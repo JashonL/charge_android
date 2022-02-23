@@ -117,7 +117,7 @@ public abstract class BaseActivity extends AppCompatActivity implements EasyPerm
     public void initStatusBar() {
         //设置共同沉浸式样式
         mImmersionBar=  ImmersionBar.with(this);
-        mImmersionBar.statusBarDarkFont(false, 0.2f)//设置状态栏图片为深色，(如果android 6.0以下就是半透明)
+        mImmersionBar.statusBarDarkFont(true, 0.2f)//设置状态栏图片为深色，(如果android 6.0以下就是半透明)
                 .fitsSystemWindows(true)
                 .statusBarColor(R.color.white_background)//这里的颜色，你可以自定义。
                 .init();

@@ -5,21 +5,21 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-
-import androidx.core.content.ContextCompat;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
+
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
@@ -33,9 +33,7 @@ import com.growatt.chargingpile.bean.SolarBean;
 import com.growatt.chargingpile.bean.WiFiRequestMsgBean;
 import com.growatt.chargingpile.bean.WifiParseBean;
 import com.growatt.chargingpile.bean.WifiSetBean;
-import com.growatt.chargingpile.util.Base64;
 import com.growatt.chargingpile.util.Cons;
-import com.growatt.chargingpile.util.DecoudeUtil;
 import com.growatt.chargingpile.util.MyUtil;
 import com.growatt.chargingpile.util.Mydialog;
 import com.growatt.chargingpile.util.PickViewUtils;
@@ -60,21 +58,21 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
-public class WifiSetActivity extends BaseActivity {
+public class WifiSetActivity extends BaseActivity implements Toolbar.OnMenuItemClickListener{
 
-    @BindView(R.id.tvTitle)
-    TextView tvTitle;
-    @BindView(R.id.ivLeft)
-    ImageView ivLeft;
-    @BindView(R.id.tvRight)
-    TextView tvRight;
+
+    @BindView(R.id.status_bar_view)
+    View statusBarView;
+    @BindView(R.id.tv_title)
+    AppCompatTextView tvTitle;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     @BindView(R.id.headerView)
     LinearLayout headerView;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     @BindView(R.id.srl_pull)
     SwipeRefreshLayout srlPull;
-
     private WifiSetAdapter mAdapter;
     private List<MultiItemEntity> list = new ArrayList<>();
     public String[] lanArray;
@@ -119,7 +117,7 @@ public class WifiSetActivity extends BaseActivity {
     //wifi相关设置
     private byte[] ssidByte;
     private byte[] wifiKeyByte;
-//    private byte[] bltNameByte;
+    //    private byte[] bltNameByte;
     private byte[] bltPwdByte;
     private byte[] name4GByte;
     private byte[] pwd4GByte;
@@ -278,11 +276,21 @@ public class WifiSetActivity extends BaseActivity {
     }
 
     private void initHeaderView() {
-        ivLeft.setImageResource(R.drawable.back);
+
+        toolbar.setNavigationIcon(R.drawable.icon_back);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                back();
+            }
+        });
         tvTitle.setText(getString(R.string.m105桩体设置));
-        tvTitle.setTextColor(ContextCompat.getColor(this, R.color.title_1));
-        tvRight.setText(R.string.m182保存);
-        tvRight.setTextColor(ContextCompat.getColor(this, R.color.title_1));
+        tvTitle.setTextColor(ContextCompat.getColor(this, R.color.main_theme_text_color));
+
+
+
+        toolbar.inflateMenu(R.menu.menu_text);
+        toolbar.setOnMenuItemClickListener(this);
         srlPull.setColorSchemeColors(ContextCompat.getColor(this, R.color.maincolor_1));
         srlPull.setOnRefreshListener(this::refresh);
     }
@@ -355,12 +363,12 @@ public class WifiSetActivity extends BaseActivity {
         modeArray = new String[]{getString(R.string.m217扫码刷卡), getString(R.string.m218仅刷卡充电), getString(R.string.m219插枪充电)};
         enableArray = new String[]{getString(R.string.m300禁止), getString(R.string.m299使能)};
 //        wiringArray = new String[]{getString(R.string.mCT), getString(R.string.m电表)};
-        wiringArray = new String[]{"CT2000", getString(R.string.m电表),"CT3000"};
+        wiringArray = new String[]{"CT2000", getString(R.string.m电表), "CT3000"};
         solarArrray = new String[]{"FAST", "ECO", "ECO+"};
         gunArrray = new String[]{getString(R.string.m110A枪), getString(R.string.m111B枪), getString(R.string.m112C枪)};
         lockArrray = new String[]{getString(R.string.m已解锁), getString(R.string.m已锁住)};
-        ammterTypeArray = new String[]{getString(R.string.m安科瑞), getString(R.string.m东宏),"Acrel DDS1352",
-                "Acrel DTSD1352(Three)","Eastron SDM230","Eastron SDM630(Three)","Eastron SDM120 MID","Eastron SDM72D MID(Three)","Din-Rail DTSU666 MID(Three)"};
+        ammterTypeArray = new String[]{getString(R.string.m安科瑞), getString(R.string.m东宏), "Acrel DDS1352",
+                "Acrel DTSD1352(Three)", "Eastron SDM230", "Eastron SDM630(Three)", "Eastron SDM120 MID", "Eastron SDM72D MID(Three)", "Din-Rail DTSU666 MID(Three)"};
         unLockTypeArray = new String[]{getString(R.string.m手动), getString(R.string.m自动)};
         netModeArray = new String[]{"STATIC", "DHCP"};
         solarBeans = new ArrayList<>();
@@ -1590,28 +1598,28 @@ public class WifiSetActivity extends BaseActivity {
         //加密方式
         byte encryption = this.encryption;
         //指令
-        byte cmd = proversion<10? WiFiMsgConstant.CONSTANT_MSG_13:WiFiMsgConstant.CONSTANT_MSG_33;
+        byte cmd = proversion < 10 ? WiFiMsgConstant.CONSTANT_MSG_13 : WiFiMsgConstant.CONSTANT_MSG_33;
 
         /*****有效数据*****/
-        if (ssidByte == null ) {
-            ssidByte=new byte[0];
+        if (ssidByte == null) {
+            ssidByte = new byte[0];
         }
-        if (wifiKeyByte == null ) {
-            wifiKeyByte=new byte[0];
+        if (wifiKeyByte == null) {
+            wifiKeyByte = new byte[0];
         }
-        if (bltPwdByte == null ) {
-            bltPwdByte=new byte[0];
+        if (bltPwdByte == null) {
+            bltPwdByte = new byte[0];
         }
-        if (name4GByte == null ) {
-            name4GByte=new byte[0];
+        if (name4GByte == null) {
+            name4GByte = new byte[0];
         }
-        if (pwd4GByte == null ) {
-            pwd4GByte=new byte[0];
+        if (pwd4GByte == null) {
+            pwd4GByte = new byte[0];
         }
-        if (apn4GByte == null ) {
-            apn4GByte=new byte[0];
+        if (apn4GByte == null) {
+            apn4GByte = new byte[0];
         }
-        int len = ssidByte.length + wifiKeyByte.length  + bltPwdByte.length + name4GByte.length + pwd4GByte.length + apn4GByte.length;
+        int len = ssidByte.length + wifiKeyByte.length + bltPwdByte.length + name4GByte.length + pwd4GByte.length + apn4GByte.length;
         byte[] prayload = new byte[len];
 
         //ssid
@@ -1623,11 +1631,11 @@ public class WifiSetActivity extends BaseActivity {
         //蓝牙密码
         System.arraycopy(bltPwdByte, 0, prayload, ssidByte.length + wifiKeyByte.length, bltPwdByte.length);
         //4G用户名
-        System.arraycopy(name4GByte, 0, prayload, ssidByte.length + wifiKeyByte.length  + bltPwdByte.length, name4GByte.length);
+        System.arraycopy(name4GByte, 0, prayload, ssidByte.length + wifiKeyByte.length + bltPwdByte.length, name4GByte.length);
         //4G密码
-        System.arraycopy(pwd4GByte, 0, prayload, ssidByte.length + wifiKeyByte.length  + bltPwdByte.length + name4GByte.length, pwd4GByte.length);
+        System.arraycopy(pwd4GByte, 0, prayload, ssidByte.length + wifiKeyByte.length + bltPwdByte.length + name4GByte.length, pwd4GByte.length);
         //4GAPN
-        System.arraycopy(apn4GByte, 0, prayload, ssidByte.length + wifiKeyByte.length  + bltPwdByte.length + name4GByte.length + pwd4GByte.length, apn4GByte.length);
+        System.arraycopy(apn4GByte, 0, prayload, ssidByte.length + wifiKeyByte.length + bltPwdByte.length + name4GByte.length + pwd4GByte.length, apn4GByte.length);
 
 
         byte[] encryptedData = SmartHomeUtil.decodeKey(prayload, newKey);
@@ -1941,7 +1949,7 @@ public class WifiSetActivity extends BaseActivity {
 
     /**********************************解析数据************************************/
 
-    private void parseReceivData(byte[] data) throws IndexOutOfBoundsException{
+    private void parseReceivData(byte[] data) throws IndexOutOfBoundsException {
         if (data == null) return;
         int length = data.length;
         if (length > 4) {
@@ -1974,7 +1982,7 @@ public class WifiSetActivity extends BaseActivity {
                         //电桩类型，直流或者交流
                         devType = data[2];
                         //是否允许进入
-                        int allow = SmartHomeUtil.byte2Int(new byte[]{ prayload[0]});
+                        int allow = SmartHomeUtil.byte2Int(new byte[]{prayload[0]});
                         Mydialog.Dismiss();
                         proversion = allow;
                         if (allow == 0) {
@@ -2468,7 +2476,7 @@ public class WifiSetActivity extends BaseActivity {
                         break;
                     case WiFiMsgConstant.CONSTANT_MSG_15:
                         int result = SmartHomeUtil.byte2Int(new byte[]{prayload[0]});
-                        if ( result == 1) {
+                        if (result == 1) {
 //                        getDeviceInfo(WiFiMsgConstant.CONSTANT_MSG_01);
                             T.make(getString(R.string.m243设置成功), WifiSetActivity.this);
                         } else {
@@ -2498,17 +2506,7 @@ public class WifiSetActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.ivLeft, R.id.tvRight})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.ivLeft:
-                back();
-                break;
-            case R.id.tvRight:
-                save();
-                break;
-        }
-    }
+
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -2982,4 +2980,16 @@ public class WifiSetActivity extends BaseActivity {
         super.onDestroy();
         if (bind != null) bind.unbind();
     }
+
+
+
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        if (item.getItemId() == R.id.right_action) {
+            save();
+        }
+        return true;
+    }
+
 }

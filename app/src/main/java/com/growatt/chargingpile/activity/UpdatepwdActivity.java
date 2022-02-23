@@ -4,7 +4,14 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 
 import com.growatt.chargingpile.BaseActivity;
 import com.growatt.chargingpile.R;
@@ -28,14 +35,32 @@ import butterknife.Unbinder;
 
 public class UpdatepwdActivity extends BaseActivity {
 
-    @BindView(R.id.headerView)
-    View headerView;
+
     @BindView(R.id.et_old_password)
     EditText etOldPassword;
     @BindView(R.id.et_new_password)
     EditText etNewPassword;
     @BindView(R.id.et_repeat_password)
     EditText etRepeatPassword;
+    @BindView(R.id.status_bar_view)
+    View statusBarView;
+    @BindView(R.id.tv_title)
+    AppCompatTextView tvTitle;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.headerView)
+    LinearLayout headerView;
+    @BindView(R.id.textView1)
+    TextView textView1;
+    @BindView(R.id.textView2)
+    TextView textView2;
+    @BindView(R.id.textView3)
+    TextView textView3;
+    @BindView(R.id.ll_edit)
+    LinearLayout llEdit;
+    @BindView(R.id.bt_finish)
+    Button btFinish;
+
     private Unbinder bind;
 
 
@@ -49,14 +74,11 @@ public class UpdatepwdActivity extends BaseActivity {
 
 
     private void initHeaderView() {
-        setHeaderImage(headerView, R.drawable.back, Position.LEFT, new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
-        setHeaderTitle(headerView, getString(R.string.m57修改密码), R.color.title_1, false);
+        initToobar(toolbar);
+        tvTitle.setText(R.string.m57修改密码);
+        tvTitle.setTextColor(ContextCompat.getColor(this,R.color.main_theme_text_color));
+
 
     }
 
@@ -114,9 +136,9 @@ public class UpdatepwdActivity extends BaseActivity {
                 try {
                     JSONObject object = new JSONObject(json);
                     int code = object.getInt("code");
-                    String data=object.optString("data");
+                    String data = object.optString("data");
                     if (code == 0) {
-                        DialogUtil.circlerDialog(UpdatepwdActivity.this, data, code,false, () -> {
+                        DialogUtil.circlerDialog(UpdatepwdActivity.this, data, code, false, () -> {
                             SharedPreferencesUnit.getInstance(UpdatepwdActivity.this).putInt(Constant.AUTO_LOGIN, 0);
                             SharedPreferencesUnit.getInstance(UpdatepwdActivity.this).putInt(Constant.AUTO_LOGIN_TYPE, 0);
                             LoginUtil.logout(UpdatepwdActivity.this);
@@ -124,7 +146,7 @@ public class UpdatepwdActivity extends BaseActivity {
                     }
                     String errorMsg = object.optString("data");
                     if (!TextUtils.isEmpty(errorMsg))
-                    toast(errorMsg);
+                        toast(errorMsg);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

@@ -1,9 +1,14 @@
 package com.growatt.chargingpile.activity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
+
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.view.View;
 
 import com.google.gson.Gson;
 import com.growatt.chargingpile.BaseActivity;
@@ -28,12 +33,17 @@ import butterknife.Unbinder;
 
 public class ChargingRecoderActivity extends BaseActivity {
 
-    @BindView(R.id.headerView)
-    View headerView;
 
-    /*选择充电桩*/
+    @BindView(R.id.status_bar_view)
+    View statusBarView;
+    @BindView(R.id.tv_title)
+    AppCompatTextView tvTitle;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.headerView)
+    LinearLayout headerView;
     @BindView(R.id.recyclerView)
-    RecyclerView mRecyclerView;
+    RecyclerView recyclerView;
     private List<ChargingRecordBean.DataBean> mRecordList = new ArrayList<>();
     private LinearLayoutManager mLinearLayoutManager;
     private ChargingRecordAdapter mChargingRecordAdapter;
@@ -54,7 +64,7 @@ public class ChargingRecoderActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charging_recoder);
-        bind=ButterKnife.bind(this);
+        bind = ButterKnife.bind(this);
         initIntent();
         initHeaderView();
         initRecyclerView();
@@ -63,12 +73,12 @@ public class ChargingRecoderActivity extends BaseActivity {
     }
 
     private void initIntent() {
-        chargingId=getIntent().getStringExtra("sn");
-        symbol=getIntent().getStringExtra("symbol");
+        chargingId = getIntent().getStringExtra("sn");
+        symbol = getIntent().getStringExtra("symbol");
     }
 
     private void setOnClickListener() {
-        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
@@ -93,19 +103,15 @@ public class ChargingRecoderActivity extends BaseActivity {
     private void initRecyclerView() {
         mLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mChargingRecordAdapter = new ChargingRecordAdapter(mRecordList);
-        mRecyclerView.setLayoutManager(mLinearLayoutManager);
-        mRecyclerView.setAdapter(mChargingRecordAdapter);
+        recyclerView.setLayoutManager(mLinearLayoutManager);
+        recyclerView.setAdapter(mChargingRecordAdapter);
     }
 
     private void initHeaderView() {
-        setHeaderImage(headerView, R.drawable.back, Position.LEFT, new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-               finish();
-            }
-        });
-        setHeaderTitle(headerView, getString(R.string.m104充电记录), R.color.title_1, false);
+        initToobar(toolbar);
+        tvTitle.setText(R.string.m104充电记录);
+        tvTitle.setTextColor(ContextCompat.getColor(this, R.color.main_theme_text_color));
     }
 
 
@@ -113,10 +119,10 @@ public class ChargingRecoderActivity extends BaseActivity {
         Mydialog.Show(this);
         Map<String, Object> jsonMap = new LinkedHashMap<String, Object>();
         jsonMap.put("userId", SmartHomeUtil.getUserName());
-        jsonMap.put("sn",chargingId);
+        jsonMap.put("sn", chargingId);
         jsonMap.put("page", page);
         jsonMap.put("psize", psize);
-        jsonMap.put("lan",getLanguage());//测试id
+        jsonMap.put("lan", getLanguage());//测试id
         String json = SmartHomeUtil.mapToJsonString(jsonMap);
         PostUtil.postJson(SmartHomeUrlUtil.postUserChargingRecord(), json, new PostUtil.postListener() {
             @Override

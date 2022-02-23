@@ -7,7 +7,7 @@
     android:background="@color/gray_background_small"
     tools:context=".activity.ChargingSetActivity">
 
-    <include layout="@layout/header_view_title" />
+    <include layout="@layout/toobar_title" />
 
     <RelativeLayout
         android:layout_marginTop="@dimen/xa20"

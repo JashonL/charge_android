@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/headerView"
     tools:context=".activity.UpdatepwdActivity" >
-    <include layout="@layout/header_view_title" android:id="@+id/headerView"/>
+    <include layout="@layout/toobar_title"/>
 
 
     <LinearLayout

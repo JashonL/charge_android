@@ -2,14 +2,14 @@ package com.growatt.chargingpile.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
+
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.growatt.chargingpile.BaseActivity;
 import com.growatt.chargingpile.R;
@@ -28,18 +28,20 @@ import butterknife.Unbinder;
 
 public class WifiSetGuideActivity extends BaseActivity {
 
-    @BindView(R.id.tvTitle)
-    TextView tvTitle;
-    @BindView(R.id.ivLeft)
-    ImageView ivLeft;
-    @BindView(R.id.ivRight)
-    ImageView ivRight;
-    @BindView(R.id.relativeLayout1)
-    RelativeLayout relativeLayout1;
+
+    @BindView(R.id.status_bar_view)
+    View statusBarView;
+    @BindView(R.id.tv_title)
+    AppCompatTextView tvTitle;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     @BindView(R.id.headerView)
     LinearLayout headerView;
+    @BindView(R.id.view)
+    View view;
     @BindView(R.id.rv_gui)
     RecyclerView rvGui;
+
 
     private int[] resIds;
     private String[] des;
@@ -52,13 +54,13 @@ public class WifiSetGuideActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wifi_set_gui);
-        bind=ButterKnife.bind(this);
+        bind = ButterKnife.bind(this);
         saveRecorde();
         initResource();
         initHeaderViews();
         initRecycleView();
         devId = getIntent().getStringExtra("sn");
-        online=getIntent().getIntExtra("online",0);
+        online = getIntent().getIntExtra("online", 0);
     }
 
     private void saveRecorde() {
@@ -94,27 +96,22 @@ public class WifiSetGuideActivity extends BaseActivity {
     }
 
     private void initHeaderViews() {
-        ivLeft.setImageResource(R.drawable.back);
+        toolbar.setNavigationIcon(R.drawable.icon_back);
+        toolbar.setNavigationOnClickListener(v -> {
+            if (isGuide) {
+                finish();
+            } else {
+                Intent intent5 = new Intent(WifiSetGuideActivity.this, ConnetWiFiActivity.class);
+                intent5.putExtra("sn", devId);
+                intent5.putExtra("online", online);
+                intent5.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                jumpTo(intent5, true);
+            }
+        });
         tvTitle.setText(R.string.m312WIFI直连操作指引);
-        tvTitle.setTextColor(ContextCompat.getColor(this, R.color.title_1));
+        tvTitle.setTextColor(ContextCompat.getColor(this, R.color.main_theme_text_color));
     }
 
-    @OnClick(R.id.ivLeft)
-    public void onViewClicked(View view) {
-        switch (view.getId()){
-            case R.id.ivLeft:
-                if (isGuide){
-                    finish();
-                }else {
-                    Intent intent5 = new Intent(this, ConnetWiFiActivity.class);
-                    intent5.putExtra("sn", devId);
-                    intent5.putExtra("online",online);
-                    intent5.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    jumpTo(intent5, true);
-                }
-                break;
-        }
-    }
 
     @Override
     protected void onDestroy() {

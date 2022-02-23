@@ -7,16 +7,12 @@ import android.content.Intent;
 import com.google.gson.Gson;
 import com.growatt.chargingpile.R;
 import com.growatt.chargingpile.activity.ChargingMainActivity;
-import com.growatt.chargingpile.activity.ChargingPileActivity;
-import com.growatt.chargingpile.activity.LoginActivity;
 import com.growatt.chargingpile.activity.YingliLoginActivity;
 import com.growatt.chargingpile.application.MyApplication;
 import com.growatt.chargingpile.bean.UserBean;
 import com.growatt.chargingpile.connutil.GetUtil;
 import com.growatt.chargingpile.connutil.PostUtil;
 import com.growatt.chargingpile.connutil.Urlsutil;
-import com.growatt.chargingpile.jpush.PushUtils;
-import com.growatt.chargingpile.jpush.TagAliasOperatorHelper;
 import com.growatt.chargingpile.listener.OnViewEnableListener;
 import com.growatt.chargingpile.sqlite.SqliteUtil;
 import com.tencent.mmkv.MMKV;
@@ -30,8 +26,6 @@ import java.util.Map;
 
 
 import static com.growatt.chargingpile.application.MyApplication.context;
-import static com.growatt.chargingpile.jpush.TagAliasOperatorHelper.ALIAS_ACTION;
-import static com.growatt.chargingpile.jpush.TagAliasOperatorHelper.ALIAS_DATA;
 
 /**
  * Created by Administrator on 2018/10/17.
@@ -301,7 +295,6 @@ public class LoginUtil {
         Urlsutil.setUrl_Full("");
         Cons.setNoConfigBean(null);
 //        JPushInterface.setAlias(act,1,"");
-        setJpushAlias(act.getApplication());
         //设置不自动登录
         SharedPreferencesUnit.getInstance(act).putInt(Constant.AUTO_LOGIN, 0);
         SharedPreferencesUnit.getInstance(act).putInt(Constant.AUTO_LOGIN_TYPE, 0);
@@ -322,13 +315,6 @@ public class LoginUtil {
 
 
 
-    public static void setJpushAlias(Context context) {
-        //删除绑定极光的别名
-        MMKV.defaultMMKV().putString(ALIAS_DATA, "");
-        MMKV.defaultMMKV().putInt(ALIAS_ACTION, 2);
-        PushUtils.deleteAlias(context,PushUtils.sequence++);
-        PushUtils.sequence=1;
-    }
 
 
     /**

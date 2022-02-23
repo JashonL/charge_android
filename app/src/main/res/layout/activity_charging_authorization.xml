@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context=".activity.ChargingAuthorizationActivity">
 
-    <include layout="@layout/header_view" />
+    <include layout="@layout/toobar_title" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh"

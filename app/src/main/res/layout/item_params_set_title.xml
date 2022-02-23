@@ -12,6 +12,6 @@
         android:text="@string/m148基础参数"
         android:singleLine="true"
         android:gravity="center_vertical"
-        android:textColor="@color/title_3"
+        android:textColor="@color/main_theme_text_color"
         android:textSize="@dimen/xa28" />
 </LinearLayout>

@@ -112,9 +112,9 @@ dependencies {
 
     /*circleimageview*/
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-
+/*
     implementation 'cn.jiguang.sdk:jpush-google:4.2.2'
-    implementation 'cn.jiguang.sdk:jcore-google:2.9.0'
+    implementation 'cn.jiguang.sdk:jcore-google:2.9.0'*/
     /*toastUtils*/
     implementation 'com.hjq:toast:8.2'
 

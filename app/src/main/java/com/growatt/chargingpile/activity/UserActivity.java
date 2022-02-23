@@ -9,8 +9,12 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.widget.LinearLayout;
+
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 
 import com.growatt.chargingpile.BaseActivity;
 import com.growatt.chargingpile.R;
@@ -34,24 +38,71 @@ import butterknife.Unbinder;
 
 public class UserActivity extends BaseActivity {
 
+
+    @BindView(R.id.status_bar_view)
+    View statusBarView;
+    @BindView(R.id.tv_title)
+    AppCompatTextView tvTitle;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     @BindView(R.id.headerView)
-    View headerView;
+    LinearLayout headerView;
+    @BindView(R.id.iv_more)
+    ImageView ivMore;
+    @BindView(R.id.rl_edit_password)
+    ConstraintLayout rlEditPassword;
+    @BindView(R.id.tv_phone_title)
+    AppCompatTextView tvPhoneTitle;
     @BindView(R.id.tv_phone)
-    TextView tvPhone;
+    AppCompatTextView tvPhone;
+    @BindView(R.id.iv_phone_more)
+    ImageView ivPhoneMore;
+    @BindView(R.id.frad_linear)
+    View fradLinear;
+    @BindView(R.id.rl_edit_phone)
+    ConstraintLayout rlEditPhone;
+    @BindView(R.id.tv_email_title)
+    AppCompatTextView tvEmailTitle;
     @BindView(R.id.tv_email)
-    TextView tvEmail;
-    @BindView(R.id.tvTitle)
-    TextView tvTitle;
-/*    @BindView(R.id.tv_installer)
-    TextView tvInstaller;*/
+    AppCompatTextView tvEmail;
+    @BindView(R.id.iv_email_more)
+    ImageView ivEmailMore;
+    @BindView(R.id.rl_edit_email)
+    ConstraintLayout rlEditEmail;
+    @BindView(R.id.tv_installemail_title)
+    AppCompatTextView tvInstallemailTitle;
     @BindView(R.id.tv_installemail)
-    TextView tvInstallemail;
+    AppCompatTextView tvInstallemail;
+    @BindView(R.id.iv_installemail_more)
+    ImageView ivInstallemailMore;
+    @BindView(R.id.rl_edit_installemail)
+    ConstraintLayout rlEditInstallemail;
+    @BindView(R.id.tv_nstallphone_title)
+    AppCompatTextView tvNstallphoneTitle;
     @BindView(R.id.tv_installphone)
-    TextView tvInstallphone;
+    AppCompatTextView tvInstallphone;
+    @BindView(R.id.iv_installphone_more)
+    ImageView ivInstallphoneMore;
+    @BindView(R.id.rl_edit_installphone)
+    ConstraintLayout rlEditInstallphone;
+    @BindView(R.id.tv_installaddress_title)
+    AppCompatTextView tvInstalladdressTitle;
     @BindView(R.id.tv_installaddress)
-    TextView tvInstalladdress;
+    AppCompatTextView tvInstalladdress;
+    @BindView(R.id.iv_installaddress)
+    ImageView ivInstalladdress;
+    @BindView(R.id.rl_edit_installaddress)
+    ConstraintLayout rlEditInstalladdress;
+    @BindView(R.id.tv_date_title)
+    AppCompatTextView tvDateTitle;
     @BindView(R.id.tv_date)
-    TextView tvDate;
+    AppCompatTextView tvDate;
+    @BindView(R.id.iv_date_more)
+    ImageView ivDateMore;
+    @BindView(R.id.rl_edit_date)
+    ConstraintLayout rlEditDate;
+    @BindView(R.id.logout)
+    Button logout;
 
     private Unbinder bind;
 
@@ -92,7 +143,7 @@ public class UserActivity extends BaseActivity {
             tvInstalladdress.setText(installAddress);
         }
 
-        String date=Cons.userBean.getInstallDate();
+        String date = Cons.userBean.getInstallDate();
         if (!TextUtils.isEmpty(date)) {
             tvDate.setText(date);
         }
@@ -101,16 +152,13 @@ public class UserActivity extends BaseActivity {
 
 
     private void initHeaderView() {
-        setHeaderTitle(headerView, getString(R.string.m51账号管理), R.color.title_1, false);
-        setHeaderImage(headerView, R.drawable.back, Position.LEFT, new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        initToobar(toolbar);
+        tvTitle.setTextColor(ContextCompat.getColor(this,R.color.main_theme_text_color));
+        tvTitle.setText(R.string.m51账号管理);
+
     }
 
-    @OnClick({R.id.rl_edit_password, R.id.rl_edit_phone, R.id.rl_edit_email, R.id.rl_edit_installemail, R.id.rl_edit_installphone, R.id.rl_edit_installaddress, R.id.logout,R.id.rl_edit_date})
+    @OnClick({R.id.rl_edit_password, R.id.rl_edit_phone, R.id.rl_edit_email, R.id.rl_edit_installemail, R.id.rl_edit_installphone, R.id.rl_edit_installaddress, R.id.logout, R.id.rl_edit_date})
     public void onClickListners(View view) {
         switch (view.getId()) {
             case R.id.rl_edit_password:
@@ -228,8 +276,8 @@ public class UserActivity extends BaseActivity {
             if (requestCode == 103) {
                 String type = data.getStringExtra("type");
                 String result = data.getStringExtra("result");
-                String date =data.getStringExtra("date");
-                if (!TextUtils.isEmpty(result)||!TextUtils.isEmpty(date)) {
+                String date = data.getStringExtra("date");
+                if (!TextUtils.isEmpty(result) || !TextUtils.isEmpty(date)) {
                     if ("1".equals(type)) {
                         Cons.userBean.setPhone(result);
                         tvPhone.setText(result);
@@ -242,10 +290,10 @@ public class UserActivity extends BaseActivity {
                     } else if ("4".equals(type)) {
                         Cons.userBean.setInstallPhone(result);
                         tvInstallphone.setText(result);
-                    } else if ("5".equals(type)){
+                    } else if ("5".equals(type)) {
                         Cons.userBean.setInstallAddress(result);
                         tvInstalladdress.setText(result);
-                    }else if ("6".equals(type)){
+                    } else if ("6".equals(type)) {
                         Cons.userBean.setInstallDate(date);
                         tvDate.setText(date);
                     }

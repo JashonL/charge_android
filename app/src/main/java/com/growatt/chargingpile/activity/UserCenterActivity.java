@@ -59,10 +59,6 @@ public class UserCenterActivity extends BaseActivity {
 
     @BindView(R.id.status_bar_view)
     View statusBarView;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
     @BindView(R.id.iv_avatar)
     ImageView ivAvatar;
 
@@ -90,32 +86,19 @@ public class UserCenterActivity extends BaseActivity {
         initRecycleView();
         initListners();
 
-        initToobar();
+        initStatusBar();
+
 
     }
 
 
-    public void initToobar() {
-        toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.translate));
-        toolbar.setNavigationIcon(R.drawable.icon_back_w);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-        tvTitle.setTextColor(ContextCompat.getColor(this, R.color.white_background));
-        tvTitle.setText(R.string.m50我);
 
-    }
 
 
     @Override
     public void initStatusBar() {
-        super.initStatusBar();
         mImmersionBar = ImmersionBar.with(this);
         mImmersionBar.statusBarDarkFont(false, 0.2f)//设置状态栏图片为深色，(如果android 6.0以下就是半透明)
-                .statusBarColor(R.color.main_theme_text_color)//这里的颜色，你可以自定义。
                 .statusBarView(statusBarView)
                 .init();
     }

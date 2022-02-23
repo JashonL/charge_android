@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context=".activity.ConnetWiFiActivity">
 
-    <include layout="@layout/header_view" />
+    <include layout="@layout/toobar_title" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"

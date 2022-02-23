@@ -154,7 +154,7 @@
                     android:id="@+id/iv_charging_time"
                     android:layout_width="@dimen/xa36"
                     android:layout_height="match_parent"
-                    android:src="@drawable/charging_time" />
+                    android:src="@drawable/preset_time" />
 
                 <RelativeLayout
                     android:paddingLeft="@dimen/xa17"
@@ -205,7 +205,7 @@
                     android:id="@+id/iv_charging_ele"
                     android:layout_width="@dimen/xa36"
                     android:layout_height="match_parent"
-                    android:src="@drawable/charging_record_ele" />
+                    android:src="@drawable/preset_energy" />
 
                 <RelativeLayout
                     android:paddingRight="@dimen/xa1"
@@ -254,7 +254,7 @@
                     android:id="@+id/iv_charging_money"
                     android:layout_width="@dimen/xa36"
                     android:layout_height="match_parent"
-                    android:src="@drawable/charging_money" />
+                    android:src="@drawable/preset_money" />
 
                 <RelativeLayout
                     android:paddingStart="@dimen/xa17"
