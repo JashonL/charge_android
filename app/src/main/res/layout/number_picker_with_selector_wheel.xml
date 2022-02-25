@@ -20,7 +20,7 @@
 
     <view
         android:id="@+id/np__numberpicker_input"
-        class="com.growatt.chargingpile.view.NumberPicker$CustomEditText"
+        class="com.yingli.chargingpile.view.NumberPicker$CustomEditText"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@null"

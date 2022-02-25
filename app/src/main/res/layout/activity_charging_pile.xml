@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.growatt.chargingpile.activity.ChargingPileActivity">
+    tools:context="com.yingli.chargingpile.activity.ChargingPileActivity">
 
 
     <RelativeLayout
@@ -253,7 +253,7 @@
                         </RelativeLayout>
 
 
-                        <com.growatt.chargingpile.view.AutofitTextView
+                        <com.yingli.chargingpile.view.AutofitTextView
                             android:id="@+id/tv_status"
                             android:layout_width="@dimen/xa200"
                             android:layout_height="wrap_content"
@@ -371,7 +371,7 @@
                             android:gravity="center"
                             android:src="@drawable/btn_start_charging" />
 
-                        <com.growatt.chargingpile.view.AutofitTextView
+                        <com.yingli.chargingpile.view.AutofitTextView
                             android:id="@+id/tv_charging_status"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

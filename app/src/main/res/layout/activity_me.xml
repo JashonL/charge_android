@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/gray_background2"
-    tools:context="com.growatt.chargingpile.activity.MeActivity">
+    tools:context="com.yingli.chargingpile.activity.MeActivity">
 
     <include layout="@layout/header_view_title"/>
 

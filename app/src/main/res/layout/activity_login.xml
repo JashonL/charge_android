@@ -34,7 +34,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <com.growatt.chargingpile.view.AutofitTextView
+        <com.yingli.chargingpile.view.AutofitTextView
             android:id="@+id/tvRight"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

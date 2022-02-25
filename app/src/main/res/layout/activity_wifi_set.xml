@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.growatt.chargingpile.activity.WifiSetActivity">
+    tools:context="com.yingli.chargingpile.activity.WifiSetActivity">
 
     <include layout="@layout/toobar_title" />
 

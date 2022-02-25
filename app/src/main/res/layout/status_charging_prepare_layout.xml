@@ -28,7 +28,7 @@
                     android:textColor="@color/white_background"
                     android:textSize="@dimen/xa30" />
 
-                <com.growatt.chargingpile.view.AutoFitTextViewTwo
+                <com.yingli.chargingpile.view.AutoFitTextViewTwo
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/m199达到预设停止充电"
@@ -288,7 +288,7 @@
                 android:paddingLeft="@dimen/xa30"
                 android:paddingRight="@dimen/xa30">
 
-                <com.growatt.chargingpile.view.AutoFitTextViewTwo
+                <com.yingli.chargingpile.view.AutoFitTextViewTwo
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/m203预约充电"

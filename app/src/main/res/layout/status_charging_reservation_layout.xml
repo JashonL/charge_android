@@ -62,7 +62,7 @@
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
 
-                    <com.growatt.chargingpile.view.AutoFitTextViewTwo
+                    <com.yingli.chargingpile.view.AutoFitTextViewTwo
                         android:id="@+id/tv_time_key"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -71,7 +71,7 @@
                         android:textColor="@color/main_theme_text_color"
                         android:textSize="@dimen/xa36" />
 
-                    <com.growatt.chargingpile.view.AutoFitTextViewTwo
+                    <com.yingli.chargingpile.view.AutoFitTextViewTwo
                         android:id="@+id/tv_rate_value"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -105,7 +105,7 @@
                 app:layout_constraintRight_toLeftOf="@+id/view_center_line"
                 app:layout_constraintTop_toBottomOf="@+id/fl_time_rate" />
 
-            <com.growatt.chargingpile.view.AutofitTextView
+            <com.yingli.chargingpile.view.AutofitTextView
                 android:id="@+id/tv_preset_value"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -121,7 +121,7 @@
                 app:layout_constraintTop_toTopOf="@+id/view_preset_background"
                 app:layout_constraintVertical_chainStyle="spread_inside" />
 
-            <com.growatt.chargingpile.view.AutofitTextView
+            <com.yingli.chargingpile.view.AutofitTextView
                 android:id="@+id/tv_preset_type"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -172,7 +172,7 @@
                 app:layout_constraintTop_toTopOf="@+id/view_cost_background" />
 
 
-            <com.growatt.chargingpile.view.AutofitTextView
+            <com.yingli.chargingpile.view.AutofitTextView
                 android:id="@+id/tv_preset_value_cal"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -188,7 +188,7 @@
                 app:layout_constraintRight_toRightOf="@+id/view_cost_background"
                 app:layout_constraintTop_toTopOf="@+id/view_cost_background" />
 
-            <com.growatt.chargingpile.view.AutofitTextView
+            <com.yingli.chargingpile.view.AutofitTextView
                 android:id="@+id/tv_type_text"
                 android:layout_width="0dp"
                 android:layout_height="0dp"

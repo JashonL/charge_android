@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/white_background"
     android:orientation="vertical"
-    tools:context="com.growatt.chargingpile.activity.AgreementActivity">
+    tools:context="com.yingli.chargingpile.activity.AgreementActivity">
 
     <include
         android:id="@+id/headerView"

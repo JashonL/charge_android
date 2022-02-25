@@ -92,7 +92,7 @@
                     android:src="@drawable/authorization_add_user_selected"
                     android:textSize="@dimen/xa24" />
 
-                <com.growatt.chargingpile.view.AutoFitTextViewTwo
+                <com.yingli.chargingpile.view.AutoFitTextViewTwo
                     android:id="@+id/tv_username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

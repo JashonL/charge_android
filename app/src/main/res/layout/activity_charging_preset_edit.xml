@@ -113,7 +113,7 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <com.growatt.chargingpile.view.NumberPicker
+                    <com.yingli.chargingpile.view.NumberPicker
                         android:id="@+id/np_hour"
                         android:layout_width="@dimen/xa200"
                         android:layout_height="match_parent"
@@ -128,7 +128,7 @@
                         android:textColor="@color/title_1"
                         android:textSize="@dimen/xa25" />
 
-                    <com.growatt.chargingpile.view.NumberPicker
+                    <com.yingli.chargingpile.view.NumberPicker
                         android:id="@+id/np_minute"
                         android:layout_width="@dimen/xa200"
                         android:layout_height="match_parent"

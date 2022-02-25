@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.growatt.chargingpile">
+    package="com.yingli.chargingpile">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
@@ -75,7 +75,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
-        android:name=".application.MyApplication"
+        android:name="com.yingli.chargingpile.application.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -104,28 +104,28 @@
 
 
         <activity
-            android:name=".activity.ChargingPileActivity"
+            android:name="com.yingli.chargingpile.activity.ChargingPileActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.yingli.chargingpile.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.RegisterActivity"
+            android:name="com.yingli.chargingpile.activity.RegisterActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ForgotPasswordActivity"
+            android:name="com.yingli.chargingpile.activity.ForgotPasswordActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.AgreementActivity"
+            android:name="com.yingli.chargingpile.activity.AgreementActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.LoginActivity"
+            android:name="com.yingli.chargingpile.activity.LoginActivity"
             android:launchMode="singleTask"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" >
@@ -134,75 +134,75 @@
 
 
         <activity
-            android:name=".activity.MeActivity"
+            android:name="com.yingli.chargingpile.activity.MeActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ChargingSetActivity"
+            android:name="com.yingli.chargingpile.activity.ChargingSetActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ChargingDurationActivity"
+            android:name="com.yingli.chargingpile.activity.ChargingDurationActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ChargingPresetEditActivity"
+            android:name="com.yingli.chargingpile.activity.ChargingPresetEditActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.UserActivity"
+            android:name="com.yingli.chargingpile.activity.UserActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.UpdatepwdActivity"
+            android:name="com.yingli.chargingpile.activity.UpdatepwdActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.AmendsActivity"
+            android:name="com.yingli.chargingpile.activity.AmendsActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.NewPhoneVerActivity"
+            android:name="com.yingli.chargingpile.activity.NewPhoneVerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.NewEmailVerActivity"
+            android:name="com.yingli.chargingpile.activity.NewEmailVerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.AddChargingActivity"
+            android:name="com.yingli.chargingpile.activity.AddChargingActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.EditDurationActivity"
+            android:name="com.yingli.chargingpile.activity.EditDurationActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.AddAuthorizationActivity"
+            android:name="com.yingli.chargingpile.activity.AddAuthorizationActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ChargingParamsActivity"
+            android:name="com.yingli.chargingpile.activity.ChargingParamsActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ChargingAuthorizationActivity"
+            android:name="com.yingli.chargingpile.activity.ChargingAuthorizationActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.AddAuthorizeRegisterActivity"
+            android:name="com.yingli.chargingpile.activity.AddAuthorizeRegisterActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ChargingRecoderActivity"
+            android:name="com.yingli.chargingpile.activity.ChargingRecoderActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.AboutActivity"
+            android:name="com.yingli.chargingpile.activity.AboutActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.GuiActivity"
+            android:name="com.yingli.chargingpile.activity.GuiActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait">
         </activity>
@@ -218,34 +218,34 @@
         </provider>
 
         <activity
-            android:name=".scan.activity.MyCaptureActivity"
+            android:name="com.yingli.chargingpile.scan.activity.MyCaptureActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.WanDeviceListActivity"
+            android:name="com.yingli.chargingpile.activity.WanDeviceListActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ConnetWiFiActivity"
+            android:name="com.yingli.chargingpile.activity.ConnetWiFiActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.WifiSetActivity"
+            android:name="com.yingli.chargingpile.activity.WifiSetActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.WifiSetGuideActivity"
+            android:name="com.yingli.chargingpile.activity.WifiSetGuideActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.RateSetActivity"
+            android:name="com.yingli.chargingpile.activity.RateSetActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.TimeSelectActivity"
+            android:name="com.yingli.chargingpile.activity.TimeSelectActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.SearchDeviceActivity"
+        <activity android:name="com.yingli.chargingpile.activity.SearchDeviceActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
@@ -253,7 +253,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 
-        <activity android:name=".activity.YingliLoginActivity"
+        <activity android:name="com.yingli.chargingpile.activity.YingliLoginActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:launchMode="singleTask">
@@ -266,17 +266,17 @@
         </activity>
 
         <activity
-            android:name=".activity.UserRegisterActivity"
+            android:name="com.yingli.chargingpile.activity.UserRegisterActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".activity.UserCenterActivity"
+            android:name="com.yingli.chargingpile.activity.UserCenterActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 
 
-        <activity android:name=".activity.ChargingMainActivity"
+        <activity android:name="com.yingli.chargingpile.activity.ChargingMainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             />
