@@ -48,39 +48,23 @@ public class UserRegisterActivity extends BaseActivity {
     EditText etRepeatPassword;
     @BindView(R.id.et_user_email)
     EditText etUserEmail;
-    @BindView(R.id.et_postal_code)
-    EditText etPostalCode;
-    @BindView(R.id.et_mobile_phonenum)
-    EditText etMobilePhoneNum;
-    @BindView(R.id.et_installer)
-    EditText etInstaller;
-    @BindView(R.id.et_installer_email)
-    EditText etInstallerEmail;
-    @BindView(R.id.et_installser_phone)
-    EditText etInstallerPhone;
-    @BindView(R.id.et_installer_address)
-    EditText etInstallerAddress;
-    @BindView(R.id.tv_installer_date)
-    TextView etInstallerDate;
-    @BindView(R.id.et_charge_sn)
-    EditText etChargeSn;
-    @BindView(R.id.textView4)
-    TextView terms;
-    @BindView(R.id.checkBox)
-    CheckBox checkBox;
+
+
+
+
 
     private Calendar calendar = Calendar.getInstance();
     private String username;
     private String password;
     private String email;
-    private String postCode;
+/*    private String postCode;
     private String phone;
     private String installer;
     private String installerEmail;
     private String installerPhone;
     private String installerAddress;
     private String installerDate;
-    private String installChargeId;
+    private String installChargeId;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,11 +84,11 @@ public class UserRegisterActivity extends BaseActivity {
 
 
     private void initViews() {
-        terms.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
-        terms.getPaint().setAntiAlias(true);//抗锯齿
+/*        terms.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
+        terms.getPaint().setAntiAlias(true);//抗锯齿*/
     }
 
-    @OnClick({R.id.btRegister, R.id.textView4, R.id.ll_date})
+    @OnClick({R.id.btRegister, R.id.textView4})
     public void toRegister(View view) {
         switch (view.getId()) {
             case R.id.textView4:
@@ -112,18 +96,6 @@ public class UserRegisterActivity extends BaseActivity {
                 break;
             case R.id.btRegister:
                 register();
-                break;
-            case R.id.ll_date:
-                new DatePickerDialog(this, (view1, year, month, dayOfMonth) -> {
-                    String sbDate = year +
-                            "-" + ((month + 1) < 10 ? "0" + (month + 1) : (month + 1)) +
-                            "-" + ((dayOfMonth < 10) ? "0" + dayOfMonth : dayOfMonth);
-                    etInstallerDate.setText(sbDate);
-                }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)) {
-                    @Override
-                    protected void onStop() {
-                    }
-                }.show();
                 break;
         }
 
@@ -134,14 +106,14 @@ public class UserRegisterActivity extends BaseActivity {
         username = etUsername.getText().toString().trim();
         password = etPassword.getText().toString().trim();
         email = etUserEmail.getText().toString().trim();
-        postCode = etPostalCode.getText().toString().trim();
+/*        postCode = etPostalCode.getText().toString().trim();
         phone = etMobilePhoneNum.getText().toString().trim();
         installer = etInstaller.getText().toString().trim();
         installerEmail = etInstallerEmail.getText().toString().trim();
         installerPhone = etInstallerPhone.getText().toString().trim();
         installerAddress = etInstallerAddress.getText().toString().trim();
         installerDate = etInstallerDate.getText().toString().trim();
-        installChargeId = etChargeSn.getText().toString().trim();
+        installChargeId = etChargeSn.getText().toString().trim();*/
 
         if (TextUtils.isEmpty(username)) {
             toast(R.string.m21用户名密码为空);
@@ -183,7 +155,7 @@ public class UserRegisterActivity extends BaseActivity {
         }
 
 
-        //邮政编码
+     /*   //邮政编码
         if (TextUtils.isEmpty(postCode)) {
             toast(R.string.m邮政编码不能为空);
             return;
@@ -220,13 +192,13 @@ public class UserRegisterActivity extends BaseActivity {
         if (TextUtils.isEmpty(installChargeId)){
             toast(R.string.m充电桩序列号不能为空);
             return;
-        }
+        }*/
 
-
+/*
         if (!checkBox.isChecked()) {
             toast(R.string.m34选择用户协议);
             return;
-        }
+        }*/
         showDisclaimer();
     }
 
@@ -254,20 +226,22 @@ public class UserRegisterActivity extends BaseActivity {
             object.put("command", "register");//cmd  注册
             object.put("userId", username);//用户名
             object.put("roleId", "endUser");//角色
-            object.put("phone", phone);
             object.put("password", password);//密码
-            object.put("installer", installer);//安装者
-            object.put("company", installer);//公司
-            object.put("email", email);//邮箱
-            object.put("installerInfo", installer);//安装商信息
-            object.put("zipCode", postCode);//邮编
             object.put("country", country);//国家
             object.put("lan", getLanguage());
+            object.put("email", email);//邮箱
+
+
+        /*    object.put("installer", installer);//安装者
+            object.put("company", installer);//公司
+            object.put("installerInfo", installer);//安装商信息
+            object.put("zipCode", postCode);//邮编
+            object.put("phone", phone);
             object.put("installEmail", installerEmail);
             object.put("installPhone", installerPhone);
             object.put("installAddress", installerAddress);
             object.put("installDate", installerDate);
-            object.put("installChargeId", installChargeId);
+            object.put("installChargeId", installChargeId);*/
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -309,8 +283,9 @@ public class UserRegisterActivity extends BaseActivity {
         });
         Cons.regMap.setRegEmail(email);
         Cons.regMap.setRegPassword(password);
-        Cons.regMap.setRegPhoneNumber(phone);
         Cons.regMap.setRegUserName(username);
+
+    /*    Cons.regMap.setRegPhoneNumber(phone);
         Cons.regMap.setRegPostCode(postCode);
         Cons.regMap.setRegInstaller(installer);
         Cons.regMap.setRegInstallEmail(installerEmail);
@@ -318,7 +293,7 @@ public class UserRegisterActivity extends BaseActivity {
         Cons.regMap.setRegInstallAddress(installerAddress);
         Cons.regMap.setRegInstallDate(installerDate);
         Cons.regMap.setRegCity(country);
-        Cons.regMap.setReInstallChargeId(installChargeId);
+        Cons.regMap.setReInstallChargeId(installChargeId);*/
     }
 
 
