@@ -1037,8 +1037,8 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
             case GunBean.RESERVENOW:
             case GunBean.RESERVED:
                 mStatusGroup.addView(reservationView);
-                startWaitAnim();
-
+//                startWaitAnim();
+                GlideUtils.getInstance().showImageAct(this,R.drawable.plug_gun_static,ivGif);
                 setChargGunUi(R.drawable.charge_icon,
                         getString(R.string.m339预约),
                         ContextCompat.getColor(this, R.color.orange),
