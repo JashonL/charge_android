@@ -254,6 +254,7 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
 
     /*故障*/
     private View chargeFaultedView;
+    private TextView tvError;
 
     /*注销*/
     private View chargeExpiryView;
@@ -528,6 +529,7 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
 
     private void initFaultedView() {
         chargeFaultedView = LayoutInflater.from(this).inflate(R.layout.status_charging_faulted, mStatusGroup, false);
+        tvError=chargeFaultedView.findViewById(R.id.tv_status_faulted_message);
     }
 
     /**
@@ -1205,11 +1207,19 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                 GlideUtils.getInstance().showImageAct(this,R.drawable.charge_fault,ivGif);
                 mStatusGroup.addView(chargeFaultedView);
 
+
                 setChargGunUi(R.drawable.charge_icon,
                         getString(R.string.m121故障),
                         ContextCompat.getColor(this, R.color.red_faulted),
                         R.drawable.btn_start_charging,
                         getString(R.string.m103充电),R.drawable.shape_avalaible,R.drawable.drop_available);
+
+                String faulted = data.getFaulted();
+                if (!TextUtils.isEmpty(faulted)){
+                    String s=getString(R.string.m215电桩故障)+"\n"+faulted;
+                    tvError.setText(s);
+                }
+
                 MyUtil.showAllView(llBottomGroup);
                 break;
 
