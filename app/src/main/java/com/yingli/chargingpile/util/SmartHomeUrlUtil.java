@@ -9,7 +9,8 @@ public class SmartHomeUrlUtil {
 //    public static final String SMARTHOME_BASE_URL = "http://chat.growatt.com";
 
     //欧洲服务器
-    public static  String SMARTHOME_BASE_URL = "https://charge.ying-power.cn/ev/version/1.0.0";
+//    public static  String SMARTHOME_BASE_URL = "https://charge.ying-power.cn/ev/version/1.0.0";
+    public static String SMARTHOME_BASE_URL="https://charge.ying-power.com/ev/version/1.0.0";
 
     //测试地址
 //    public static final String SMARTHOME_BASE_URL = "http://192.168.30.69:8080";
@@ -65,7 +66,7 @@ public class SmartHomeUrlUtil {
         return SMARTHOME_BASE_URL + "/api/updateReserve";
     }
     public static String postRequestReseerveCharging() {
-        return SMARTHOME_BASE_URL + "/cmd/";
+        return SMARTHOME_BASE_URL + "/command/";
     }
 
     public static String postRequestDeleteCharging() {

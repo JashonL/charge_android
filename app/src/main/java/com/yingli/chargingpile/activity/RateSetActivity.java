@@ -262,7 +262,7 @@ public class RateSetActivity extends BaseActivity implements BaseQuickAdapter.On
         Mydialog.Show(this);
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("cmd", "addPrice");
+            jsonObject.put("command", "addPrice");
             jsonObject.put("userId", SmartHomeUtil.getUserName());
             jsonObject.put("chargeId", chargingId);
             jsonObject.put("lan", getLanguage());
