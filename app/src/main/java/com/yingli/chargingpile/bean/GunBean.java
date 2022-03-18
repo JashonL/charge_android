@@ -78,6 +78,7 @@ public class GunBean {
         private String cValue = "0";
         private String symbol = "";
         private String loopValue;
+        private String Faulted;
 
 
 
@@ -219,6 +220,14 @@ public class GunBean {
             this.loopValue = loopValue;
         }
 
+
+        public String getFaulted() {
+            return Faulted;
+        }
+
+        public void setFaulted(String faulted) {
+            Faulted = faulted;
+        }
     }
 
     public static class ReserveNowBean {

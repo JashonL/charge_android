@@ -56,6 +56,7 @@ import com.yingli.chargingpile.util.CircleDialogUtils;
 import com.yingli.chargingpile.util.Cons;
 import com.yingli.chargingpile.util.Constant;
 import com.yingli.chargingpile.util.CustomTimer;
+import com.yingli.chargingpile.util.GlideUtils;
 import com.yingli.chargingpile.util.MathUtil;
 import com.yingli.chargingpile.util.MyUtil;
 import com.yingli.chargingpile.util.Mydialog;
@@ -253,6 +254,7 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
 
     /*故障*/
     private View chargeFaultedView;
+    private TextView tvError;
 
     /*注销*/
     private View chargeExpiryView;
@@ -527,6 +529,7 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
 
     private void initFaultedView() {
         chargeFaultedView = LayoutInflater.from(this).inflate(R.layout.status_charging_faulted, mStatusGroup, false);
+        tvError=chargeFaultedView.findViewById(R.id.tv_status_faulted_message);
     }
 
     /**
@@ -1023,7 +1026,8 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                     mStatusGroup.addView(availableView);
                     MyUtil.hideAllView(View.GONE, llReserveView, llReserve);
                 }
-                startWaitAnim();
+//                startWaitAnim();
+                GlideUtils.getInstance().showImageAct(this,R.drawable.standby,ivGif);
                 setChargGunUi(R.drawable.charge_icon,
                         getString(R.string.m117空闲),
                         ContextCompat.getColor(this, R.color.orange),
@@ -1035,8 +1039,8 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
             case GunBean.RESERVENOW:
             case GunBean.RESERVED:
                 mStatusGroup.addView(reservationView);
-                startWaitAnim();
-
+//                startWaitAnim();
+                GlideUtils.getInstance().showImageAct(this,R.drawable.plug_gun_static,ivGif);
                 setChargGunUi(R.drawable.charge_icon,
                         getString(R.string.m339预约),
                         ContextCompat.getColor(this, R.color.orange),
@@ -1128,7 +1132,9 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                 break;
 
             case GunBean.SUSPENDEEV:
-                startWaitAnim();
+
+                GlideUtils.getInstance().showImageAct(this,R.drawable.charge_fault,ivGif);
+
                 mStatusGroup.addView(chargeSuspendeevView);
                 mTvContent.setText(R.string.m293车拒绝充电提示);
 
@@ -1143,7 +1149,10 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                 MyUtil.showAllView(llBottomGroup);
                 break;
             case GunBean.SUSPENDEDEVSE:
-                startWaitAnim();
+//                startWaitAnim();
+
+                GlideUtils.getInstance().showImageAct(this,R.drawable.charge_fault,ivGif);
+
                 mTvContent.setText(R.string.m294桩拒绝充电提示);
                 mStatusGroup.addView(chargeSuspendeevView);
 
@@ -1170,7 +1179,10 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                     cost = moneyUnit + cost;
                 }
                 tvFinishMoney.setText(cost);
-                startChargeAnim();
+//                startChargeAnim();
+
+                GlideUtils.getInstance().showImageAct(this,R.drawable.full_charged,ivGif);
+
                 MyUtil.showAllView(llBottomGroup);
 
                 setChargGunUi(R.drawable.charge_icon,
@@ -1181,7 +1193,7 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                 break;
 
             case GunBean.EXPIRY:
-                startWaitAnim();
+                startChargeAnim();
                 mStatusGroup.addView(chargeExpiryView);
 
                 setChargGunUi(R.drawable.charge_icon,
@@ -1192,19 +1204,27 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                 MyUtil.hideAllView(View.GONE, llBottomGroup);
                 break;
             case GunBean.FAULTED:
-                startWaitAnim();
+                GlideUtils.getInstance().showImageAct(this,R.drawable.charge_fault,ivGif);
                 mStatusGroup.addView(chargeFaultedView);
+
 
                 setChargGunUi(R.drawable.charge_icon,
                         getString(R.string.m121故障),
-                        ContextCompat.getColor(this, R.color.orange),
+                        ContextCompat.getColor(this, R.color.red_faulted),
                         R.drawable.btn_start_charging,
                         getString(R.string.m103充电),R.drawable.shape_avalaible,R.drawable.drop_available);
+
+                String faulted = data.getFaulted();
+                if (!TextUtils.isEmpty(faulted)){
+                    String s=getString(R.string.m215电桩故障)+"\n"+faulted;
+                    tvError.setText(s);
+                }
+
                 MyUtil.showAllView(llBottomGroup);
                 break;
 
             case GunBean.UNAVAILABLE:
-                startWaitAnim();
+                GlideUtils.getInstance().showImageAct(this,R.drawable.charge_fault,ivGif);
                 mTvContent.setText(R.string.m216桩体状态为不可用);
                 mStatusGroup.addView(chargeUnvailableView);
                 setChargGunUi(R.drawable.charge_icon,
@@ -1215,7 +1235,7 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                 MyUtil.showAllView(llBottomGroup);
                 break;
             case GunBean.WORK:
-                startWaitAnim();
+                GlideUtils.getInstance().showImageAct(this,R.drawable.charge_fault,ivGif);
                 mStatusGroup.addView(chargeWorkedView);
 
                 setChargGunUi(R.drawable.charge_icon,
@@ -1227,7 +1247,7 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
                 break;
 
             default:
-                startWaitAnim();
+                GlideUtils.getInstance().showImageAct(this,R.drawable.charge_fault,ivGif);
                 mStatusGroup.addView(chargeUnvailableView);
                 setChargGunUi(R.drawable.charge_icon,
                         getString(R.string.m122不可用),
@@ -2674,13 +2694,6 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
      */
 
     private void startChargeAnim() {
-    /*    MyUtil.hideAllView(View.GONE, ivfinishBackground);
-        MyUtil.showAllView(ivAnim);
-        if (animation == null) {
-            animation = AnimationUtils.loadAnimation(this, R.anim.pile_charging);
-            ivAnim.startAnimation(animation);
-        }*/
-
         Glide.with(this).asGif().load(R.drawable.charge_charging).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).into(ivGif);
     }
 
@@ -2688,11 +2701,6 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
      * 完成充电
      */
     private void startWaitAnim() {
-       /* animation = null;
-        MyUtil.hideAllView(View.GONE);
-        MyUtil.showAllView(ivfinishBackground);
-        ivAnim.clearAnimation();
-        ivfinishBackground.setImageResource(R.drawable.charging_finish_anim);*/
         Glide.with(this).asGif().load(R.drawable.charge_wait).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).into(ivGif);
     }
 
@@ -2700,10 +2708,6 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
      * 隐藏动画
      */
     private void hideAnim() {
-      /*  animation = null;
-        ivAnim.clearAnimation();
-        MyUtil.hideAllView(View.GONE, ivAnim, ivfinishBackground);*/
-
 
         MyUtil.hideAllView(View.GONE, ivGif);
 
