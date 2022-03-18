@@ -15,6 +15,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
@@ -22,6 +24,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.gyf.immersionbar.ImmersionBar;
+import com.mylhyl.circledialog.CircleDialog;
+import com.mylhyl.circledialog.view.listener.OnLvItemClickListener;
+import com.yalantis.ucrop.UCrop;
 import com.yingli.chargingpile.BaseActivity;
 import com.yingli.chargingpile.R;
 import com.yingli.chargingpile.adapter.Myadapter;
@@ -33,10 +39,6 @@ import com.yingli.chargingpile.util.MyUtil;
 import com.yingli.chargingpile.util.PermissionCodeUtil;
 import com.yingli.chargingpile.util.PhotoUtil;
 import com.yingli.chargingpile.util.SmartHomeUtil;
-import com.gyf.immersionbar.ImmersionBar;
-import com.mylhyl.circledialog.CircleDialog;
-import com.mylhyl.circledialog.view.listener.OnLvItemClickListener;
-import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -48,6 +50,7 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import pub.devrel.easypermissions.EasyPermissions;
 
 public class UserCenterActivity extends BaseActivity {
@@ -59,6 +62,16 @@ public class UserCenterActivity extends BaseActivity {
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
+    @BindView(R.id.background)
+    View background;
+    @BindView(R.id.tvTitle)
+    TextView tvTitle;
+    @BindView(R.id.ivLeft)
+    ImageView ivLeft;
+    @BindView(R.id.ivRight)
+    ImageView ivRight;
+    @BindView(R.id.relativeLayout1)
+    RelativeLayout relativeLayout1;
 
     //拍照相关变量
     private Uri imageUri;
@@ -87,9 +100,6 @@ public class UserCenterActivity extends BaseActivity {
     }
 
 
-
-
-
     @Override
     public void initStatusBar() {
         mImmersionBar = ImmersionBar.with(this);
@@ -107,6 +117,7 @@ public class UserCenterActivity extends BaseActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     private void initListners() {
@@ -437,4 +448,12 @@ public class UserCenterActivity extends BaseActivity {
     }
 
 
+    @OnClick(R.id.ivLeft)
+    public void onViewClicked(View view) {
+        switch (view.getId()){
+            case R.id.ivLeft:
+                finish();
+                break;
+        }
+    }
 }
