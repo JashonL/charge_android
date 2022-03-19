@@ -163,6 +163,33 @@
 
 
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/xa140">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="@dimen/xa398"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="@string/m33同意本公司各项用户条款及隐私政策"
+                    android:textColor="@color/title_3"
+                    android:textSize="@dimen/xa37" />
+
+                <CheckBox
+                    android:id="@+id/checkBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@+id/textView4"
+                    android:layout_toLeftOf="@+id/textView4"
+                    android:button="@drawable/selector_checkbox_bg_white"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:textColor="@color/headerView"
+                    android:textSize="@dimen/xa28" />
+            </RelativeLayout>
 
 
             <Button
@@ -170,7 +197,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/xa88"
                 android:layout_marginLeft="@dimen/xa75"
-                android:layout_marginTop="@dimen/xa80"
                 android:layout_marginRight="@dimen/xa75"
                 android:layout_marginBottom="@dimen/xa30"
                 android:background="@drawable/shape_gradient"

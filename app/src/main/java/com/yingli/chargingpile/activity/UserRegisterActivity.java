@@ -48,7 +48,8 @@ public class UserRegisterActivity extends BaseActivity {
     EditText etRepeatPassword;
     @BindView(R.id.et_user_email)
     EditText etUserEmail;
-
+    @BindView(R.id.checkBox)
+    CheckBox checkBox;
 
 
 
@@ -195,10 +196,12 @@ public class UserRegisterActivity extends BaseActivity {
         }*/
 
 /*
+      */
+
         if (!checkBox.isChecked()) {
             toast(R.string.m34选择用户协议);
             return;
-        }*/
+        }
         showDisclaimer();
     }
 
