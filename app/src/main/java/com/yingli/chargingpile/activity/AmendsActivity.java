@@ -142,7 +142,7 @@ public class AmendsActivity extends BaseActivity {
     private void initViews() throws ParseException {
         if ("1".equals(type)) {
             tvTip.setText(R.string.m58修改手机号);
-            setHeaderTitle(headerView, getString(R.string.m58修改手机号));
+            tvTitle.setText(R.string.m58修改手机号);
             etContent.setHint(R.string.m104输入电话号码);
             etContent.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_CLASS_PHONE);
             if (!TextUtils.isEmpty(PhoneNum)) {
@@ -151,14 +151,14 @@ public class AmendsActivity extends BaseActivity {
 
         } else if ("2".equals(type)) {
             tvTip.setText(R.string.m59修改邮箱);
-            setHeaderTitle(headerView, getString(R.string.m59修改邮箱));
+            tvTitle.setText(R.string.m59修改邮箱);
             etContent.setHint(R.string.m61输入邮箱地址);
             if (!TextUtils.isEmpty(email)) {
                 etContent.setText(email);
             }
         } else if ("3".equals(type)) {
             tvTip.setText(R.string.m安装商邮箱修改);
-            setHeaderTitle(headerView, getString(R.string.m安装商邮箱修改));
+            tvTitle.setText(R.string.m安装商邮箱修改);
             etContent.setHint(R.string.m请输入安装商邮箱);
             if (!TextUtils.isEmpty(installEmail)) {
                 etContent.setText(installEmail);
@@ -166,21 +166,21 @@ public class AmendsActivity extends BaseActivity {
 
         } else if ("4".equals(type)) {
             tvTip.setText(R.string.m安装商电话修改);
-            setHeaderTitle(headerView, getString(R.string.m安装商电话修改));
+            tvTitle.setText(R.string.m安装商电话修改);
             etContent.setHint(R.string.m请输入安装商电话);
             if (!TextUtils.isEmpty(installPhone)) {
                 etContent.setText(installPhone);
             }
         } else if ("5".equals(type)) {
             tvTip.setText(R.string.m安装商地址修改);
-            setHeaderTitle(headerView, getString(R.string.m安装商地址修改));
+            tvTitle.setText(R.string.m安装商地址修改);
             etContent.setHint(R.string.m请输入安装商地址);
             if (!TextUtils.isEmpty(installAddress)) {
                 etContent.setText(installAddress);
             }
         } else if ("6".equals(type)) {
             tvTip.setText(R.string.m安装日期修改);
-            setHeaderTitle(headerView, getString(R.string.m安装日期修改));
+            tvTitle.setText(R.string.m安装日期修改);
             tvContentDate.setHint(R.string.m请输入安装日期);
             if (!TextUtils.isEmpty(installDate)) {
                 tvContentDate.setText(installDate);

@@ -95,9 +95,9 @@ public class MyApplication extends Application {
      * 设置弹框按钮颜色等
      */
     private void initCirclerDialog() {
-        CircleColor.ITEM_CONTENT_TEXT = 0xFF007AFF;
-        CircleColor.FOOTER_BUTTON_TEXT_POSITIVE = 0xFF4B814B;
-        CircleColor.FOOTER_BUTTON_TEXT_NEGATIVE = 0xFF4B814B;
+        CircleColor.ITEM_CONTENT_TEXT = 0xFF7C97FE;
+        CircleColor.FOOTER_BUTTON_TEXT_POSITIVE = 0xFF7C97FE;
+        CircleColor.FOOTER_BUTTON_TEXT_NEGATIVE = 0xFF7C97FE;
     }
 
 }

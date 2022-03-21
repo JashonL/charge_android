@@ -1622,7 +1622,7 @@ public class ChargingMainActivity extends BaseActivity implements BaseQuickAdapt
     private void toConfig() {
         boolean isGuide = SharedPreferencesUnit.getInstance(this).getBoolean(Constant.WIFI_GUIDE_KEY);
         Class activity;
-        if (!(mAdapter.getData().size() > 1)) {
+        if (!(mAdapter.getData().size() > 0)) {
             toast(R.string.m212暂时还没有设备);
             return;
         }
